@@ -1,0 +1,21 @@
+# File generated on <%=Time.now().strftime("%d %b %y")%>
+
+# Redirect http://domain to http://www.domain
+server {
+  listen 80;
+  server_name  www.<%= domain %> ;
+  rewrite ^/(.*) http://<%= domain %> permanent;
+}
+
+server {
+  listen 80;
+  server_name <%= domain %>;
+
+  access_log <%= deploy_to %>/shared/log/access.log;
+  error_log  <%= deploy_to %>/shared/log/error.log;
+
+  rails_env <%= rails_env %>;
+  passenger_enabled on;
+
+  root <%= deploy_to %>/current/public/;
+}
