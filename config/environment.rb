@@ -24,6 +24,8 @@ Rails::Initializer.run do |config|
   config.gem 'dweinand-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com/'
   config.gem 'facebooker', :version => '1.0.53'
   config.gem 'hoptoad_notifier'
+  config.gem 'rmagick' # needs apt-get install imagemagick librmagick-ruby libmagickwand-dev OR libmagick9-dev
+  config.gem 'daemons'
   #config.gem 'curb', :version => '0.1.4'
   
   # Settings in config/environments/* take precedence over those specified here.
