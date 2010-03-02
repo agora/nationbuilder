@@ -1,14 +1,12 @@
 # Settings specified here will take precedence over those in config/environment.rb
 
+DB_CONFIG = YAML.load_file("#{RAILS_ROOT}/config/database.yml")
+
 # The production environment is meant for finished, "live" apps.
 # Code is not reloaded between requests
 config.cache_classes = true
 
-if ENV['MEMCACHE_SERVERS']
-  config.cache_store = :mem_cache_store, ENV['MEMCACHE_SERVERS'], { :namespace => ENV['MEMCACHE_NAMESPACE']}
-else
-  config.cache_store = :mem_cache_store, 'localhost:11211'
-end
+config.cache_store = :mem_cache_store, 'localhost:11211', { :namespace => DB_CONFIG['MEMCACHE_NAMESPACE']}
 
 # Use a different logger for distributed setups
 # config.logger = SyslogLogger.new
@@ -24,23 +22,10 @@ config.action_controller.perform_caching             = true
 config.action_mailer.raise_delivery_errors = false
 
 config.action_mailer.smtp_settings = {
-  :address => "smtp.sendgrid.net",
+  :address => "smtp.1984.is",
   :port => "25",
-  :domain => ENV['DOMAIN'],
-  :authentication => :plain,
-  :user_name => ENV['SENDGRID_USER_NAME'],
-  :password => ENV['SENDGRID_PASSWORD']
+  :domain => DB_CONFIG['DOMAIN']
 }
 
-if ENV['DOMAIN']
-  config.action_controller.session = {:domain => '.' + ENV['DOMAIN']}
-end
 
-if ENV['S3_ACCESS_KEY_ID']
-  S3_CONFIG = { 'access_key_id' => ENV['S3_ACCESS_KEY_ID'], 'secret_access_key' => ENV['S3_SECRET_ACCESS_KEY'], 'bucket' => ENV['S3_BUCKET'] }
-else
-  file_name = File.join(RAILS_ROOT,"config","s3.yml")
-  if File.exists?(file_name)
-    S3_CONFIG = YAML.load_file(file_name)
-  end
-end
+config.action_controller.session = {:domain => '.' + DB_CONFIG['DOMAIN']}

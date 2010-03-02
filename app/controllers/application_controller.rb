@@ -18,6 +18,8 @@ class ApplicationController < ActionController::Base
   
   # Make these methods visible to views as well
   helper_method :facebook_session, :government_cache, :current_partner, :current_user_endorsements, :current_priority_ids, :current_following_ids, :current_ignoring_ids, :current_following_facebook_uids, :current_government, :current_tags, :current_branches, :facebook_session, :is_robot?, :js_help
+
+  # before_filter Proc.new { I18n.reload! } # FFJ: HACK to be able to edit locale yml files on the fly in production mode
   
   # switch to the right database for this government
   before_filter :check_subdomain
