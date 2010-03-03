@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
 
   extend ActiveSupport::Memoizable
   require 'paperclip'
+  
+  ALLOWED_DOMAINS=DB_CONFIG[RAILS_ENV]['signup_domains'].collect {|x| x.values}.flatten
     
   named_scope :active, :conditions => "users.status in ('pending','active')"
   named_scope :at_least_one_endorsement, :conditions => "users.endorsements_count > 0"
@@ -121,6 +123,9 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :email, :case_sensitive => false, :allow_nil => true, :allow_blank => true
   validates_uniqueness_of   :facebook_uid, :allow_nil => true, :allow_blank => true
   validates_format_of       :email, :with => /^[-^!$#%&'*+\/=3D?`{|}~.\w]+@[a-zA-Z0-9]([-a-zA-Z0-9]*[a-zA-Z0-9])*(\.[a-zA-Z0-9]([-a-zA-Z0-9]*[a-zA-Z0-9])*)+$/x, :allow_nil => true, :allow_blank => true
+  # validates_format_of       :email, :with => /(.*)(io.is|agora.is)$/i, :if => [:has_domain_restriction?]
+  validates_format_of       :email, :with => Regexp.new(ALLOWED_DOMAINS.join('|').insert(0,'(.*)(').insert(-1,')$'), true), :if => [:has_domain_restriction?]
+  # validates_inclusion_of    :email_domain, :in => [gmail.com, hotmail.com,....]
     
   validates_presence_of     :password, :if => [:should_validate_password?]
   validates_presence_of     :password_confirmation, :if => [:should_validate_password?]
@@ -844,6 +849,10 @@ class User < ActiveRecord::Base
     self.attribute_present?("email")
   end  
   
+  def has_domain_restriction?
+    DB_CONFIG[RAILS_ENV]['signup_domain_locked']
+  end
+  
   def has_branch?
     self.attribute_present?("branch_id")
   end
@@ -1053,6 +1062,11 @@ class User < ActiveRecord::Base
     
     def make_activation_code
       self.update_attribute(:activation_code,Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join ))
+    end
+    
+    def valid_email_host?(email)  
+      hostname = email[(email =~ /@/)+1..email.length]  
+      valid = hostname.includes?('tal.is')
     end
     
 end

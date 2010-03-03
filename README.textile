@@ -1,0 +1,54 @@
+h1. environment.rb:
+
+config.i18n.default_locale = "is"
+
+
+h1. ATH production.rb
+
+h2. Þarf að setja namsespace sem alltaf:
+
+<pre><code>
+if ENV['MEMCACHE_SERVERS']
+  config.cache_store = :mem_cache_store, ENV['MEMCACHE_SERVERS'], { :namespace => ENV['MEMCACHE_NAMESPACE']}
+else
+  config.cache_store = :mem_cache_store, 'localhost:11211'
+end
+</code></pre>
+
+h2. setja domain sem domain úr config
+
+<pre><code>
+config.action_mailer.smtp_settings = {
+  :address => "smtp.1984.is",
+  :port => "25",
+  :domain => "agora.is"
+}
+</code></pre>
+
+h2. lesa env domain úr config
+
+<pre><code>
+ENV['DOMAIN']="lis.agora.is"
+if ENV['DOMAIN']
+  config.action_controller.session = {:domain => '.' + ENV['DOMAIN']}
+end
+</code></pre>
+
+h1. inflections.rb
+
+koma þessu frekar í lang, hvernig eigi að pluralize-a þema? kannski gengur ekki, þar sem við viljum ekki nota Þemu
+
+<pre><code>
+Inflector.inflections do |inflect|
+  inflect.uncountable ["Þema","þema"]
+end
+</code></pre>
+
+h1. athuga með hardkóðað stöff í user mailer
+
+model/user_mailer.rb
+
+h1. þýða default email tempaltes
+
+views/email_templates/defaults
+<pre><pre><code>

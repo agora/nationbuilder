@@ -5,6 +5,10 @@ class SessionsController < ApplicationController
     @page_title = t('sessions.new.title', :government_name => current_government.name)
     @user = User.new
     @signup = Signup.new    
+    unless DB_CONFIG[RAILS_ENV]['signup_domains'].nil?
+      @domains = []
+      DB_CONFIG[RAILS_ENV]['signup_domains'].each {|domain| @domains << domain['domain']}
+    end
     respond_to do |format|
       format.html
       format.js { render_to_facebox }

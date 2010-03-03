@@ -3,6 +3,9 @@ class UsersController < ApplicationController
   before_filter :login_required, :only => [:resend_activation, :follow, :unfollow, :endorse]
   before_filter :current_user_required, :only => [:resend_activation]
   before_filter :admin_required, :only => [:suspend, :unsuspend, :impersonate, :edit, :update, :signups, :legislators, :legislators_save, :make_admin, :reset_password]
+
+  USER_ID, PASSWORD = DB_CONFIG[RAILS_ENV]['signup_user'], DB_CONFIG[RAILS_ENV]['signup_password']
+  before_filter :authenticate, :only => [:new]
   
   def index
     if params[:q]
@@ -523,6 +526,12 @@ class UsersController < ApplicationController
         flash[:error] = t('users.deleted')
         return true
       end
+    end
+  
+    def authenticate
+      authenticate_or_request_with_http_basic do |id, password| 
+        id == USER_ID && password == PASSWORD
+      end if DB_CONFIG[RAILS_ENV]['signup_locked']
     end
   
 end
