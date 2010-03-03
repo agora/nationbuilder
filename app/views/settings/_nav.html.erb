@@ -1,3 +1,5 @@
+<% unless show_third %>
+
 <div id="nav_sub">
 	<div id="nav_sub_<% if ['index'].include?(params[:action]) %>1<% elsif ['picture'].include?(params[:action]) %>2<% elsif ['profiles'].include?(params[:controller]) %>3<% elsif ['legislators'].include?(params[:action]) %>4<% elsif ['signups'].include?(params[:action]) %>5<% elsif ['passwords'].include?(params[:controller]) %>6<% end %>">
 		<ul id="menu_sub">
@@ -38,3 +40,5 @@
 		</ul>
 	</div>
 </div>
+
+<% end %>

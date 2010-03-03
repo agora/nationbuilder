@@ -1,3 +1,4 @@
+<% unless show_third %>
 <div id="nav_sub">
 	<div id="nav_sub_<% if ['index'].include?(params[:action]) %>1<% elsif ['notifications'].include?(params[:action]) %>2<% elsif ['sent'].include?(params[:action]) %>3<% end %>">
 		<ul id="menu_sub">
@@ -19,3 +20,4 @@
 		</ul>
 	</div>
 </div>
+<% end %>

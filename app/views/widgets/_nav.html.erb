@@ -1,3 +1,5 @@
+<% unless show_third %>
+
 <div id="nav_sub">
 
 	<div id="nav_sub_<% if ['priorities'].include?(params[:action]) %>1<% elsif ['discussions'].include?(params[:action]) %>2<% elsif ['points'].include?(params[:action]) %>3<% end %>">
@@ -22,3 +24,5 @@
 		</ul>
 	</div>
 </div>
+
+<% end %>

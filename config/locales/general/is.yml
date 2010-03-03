@@ -1070,7 +1070,8 @@ is:
             name: "þín forgangsmál"
             title: "þín forgangsmál hjá {{government_name}}"
             prompt: "Bæta forgangsmáli á skrána þína"
-            heading: "Forgangsmál {{user_name}}"
+            heading: "Forgangsmálin þín"
+            # heading: "Forgangsmál {{user_name}}"
             outro: "Þú getur líka fylgst með <a href='/news/your_priority_activities'>virkni</a> og <a href='/news/your_priority_discussions'>umræðum</a> um þín forgangsmál."            
         yours_finished:
             name: "Forgangsmál þín sem er lokið"

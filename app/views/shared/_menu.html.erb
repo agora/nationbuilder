@@ -1,4 +1,3 @@
-<div id="toolbar">
 <% if ['priorities','changes','ads','prioritizer','branch_priorities'].include?(params[:controller]) %>
 	<% nav = 2 %>
 <% elsif ['news','comments'].include?(params[:controller]) %>
@@ -20,6 +19,9 @@
 <% else %>
 	<% nav = 0 %>
 <% end %>
+
+<% unless show_third %>
+<div id="toolbar">
 <div id="nav">
 <div id="nav<%= nav %>">	
 
@@ -434,36 +436,41 @@
 </div>
 </div>
 
+</div>
+<% end %>
+
 <% if nav == 1 %>
-	<%= render :partial => "issues/nav" %>
+	<%= render :partial => "issues/nav", :locals => { :show_third => show_third } %>
 <% elsif nav == 2 %>
-	<%= render :partial => "priorities/browse_nav" %>
+	<%= render :partial => "priorities/browse_nav", :locals => { :show_third => show_third } %>
 <% elsif nav == 3 %>
-	<%= render :partial => "briefing/nav" %>
+	<%= render :partial => "briefing/nav", :locals => { :show_third => show_third } %>
 <% elsif nav == 4 %>
-	<%= render :partial => "news/nav" %>
+	<%= render :partial => "news/nav", :locals => { :show_third => show_third } %>
 <% elsif nav == 5 %>
 	<% if ['user_contacts','facebook','import'].include?(params[:controller])%>
-		<%= render :partial => "user_contacts/nav" %>
+		<%= render :partial => "user_contacts/nav", :locals => { :show_third => show_third } %>
 	<% elsif ['inbox'].include?(params[:controller]) %>
-		<%= render :partial => "inbox/nav" %>
+		<%= render :partial => "inbox/nav", :locals => { :show_third => show_third } %>
 	<% else %>
-		<%= render :partial => "network/nav" %>
+		<%= render :partial => "network/nav", :locals => { :show_third => show_third } %>
 	<% end %>
 <% elsif nav == 6 %>
 	<% if ['governments','blurbs','color_schemes','admin','email_templates','pages','tags','branches'].include?(params[:controller]) %>
-		<%= render :partial => "admin/nav" %>
+		<%= render :partial => "admin/nav", :locals => { :show_third => show_third } %>
 	<% elsif ['partners'].include?(params[:controller]) and logged_in? %>
-		<%= render :partial => "partners/nav" %>	
+		<%= render :partial => "partners/nav", :locals => { :show_third => show_third } %>	
 	<% elsif logged_in? %>
-		<%= render :partial => "settings/nav" %>
+		<%= render :partial => "settings/nav", :locals => { :show_third => show_third } %>
 	<% end %>
 <% elsif nav == 7 %>
 	<% if ['charts'].include?(params[:controller])%>
-		<%= render :partial => "charts/nav" %>
+		<%= render :partial => "charts/nav", :locals => { :show_third => show_third } %>
 	<% elsif ['widgets'].include?(params[:controller])%>
-		<%= render :partial => "widgets/nav" %>
+		<%= render :partial => "widgets/nav", :locals => { :show_third => show_third } %>
 	<% end %>
 <% end %>
 
-</div>
+<% if show_third %>
+  <div style="clear:both"></div>
+<% end %>

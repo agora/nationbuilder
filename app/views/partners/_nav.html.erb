@@ -1,3 +1,5 @@
+<% unless show_third %>
+
 <% if logged_in? and current_user.is_partner? %>
 <div id="nav_sub">
 	<div id="nav_sub_<% if ['edit'].include?(params[:action]) %>1<% elsif ['picture'].include?(params[:action]) %>2<% elsif ['email'].include?(params[:action]) %>3<% end %>">
@@ -20,4 +22,6 @@
 		</ul>
 	</div>
 </div>
+<% end %>
+
 <% end %>

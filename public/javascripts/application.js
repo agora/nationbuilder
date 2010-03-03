@@ -7,8 +7,7 @@ jQuery(document).ready(function() {
 	if(!isChrome & jQuery.support.opacity) {
 		jQuery(".tab_header a, div.tab_body").corners(); 
 	}
-	jQuery("#priority_column, #intro, #buzz_box, #content_text, #notification_show, .bulletin_form").corners();
-	jQuery("#top_right_column, #toolbar").corners("bottom");
+	jQuery("#page, #toolbar, #top_right_column, #priority_column, #intro, #buzz_box, #content_text, #notification_show, .bulletin_form").corners();
 	
 	jQuery("abbr[class*=timeago]").timeago();	
 	jQuery(":input[type=textarea]").textCounting({lengthExceededClass: 'count_over'});

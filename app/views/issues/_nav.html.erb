@@ -1,101 +1,104 @@
 <% if params[:action] != 'index' %>
-	<div id="nav_sub">
+  <% unless show_third %>
+  	<div id="nav_sub">
 
-		<div id="issue_nav_name">
-			<%= @tag_names.titleize %>
-		</div>
+  		<div id="issue_nav_name">
+  			<%= @tag_names.titleize %>
+  		</div>
 
-		<div id="nav_sub_<% if ['yours','network','obama','not_obama','obama_opposed','show','controversial','rising','falling','random','newest','finished'].include?(params[:action]) %>2<% elsif ['points'].include?(params[:action]) %>3<% elsif ['documents'].include?(params[:action]) %>4<% elsif ['discussions'].include?(params[:action]) %>5<% end %>">
-			<ul id="menu_sub">
-				<li class="tab2">
-					<span class="tab_header">
-						<%= link_to t('menu.briefing.priorities', :count => @tag.priorities_count), :action => "show" %>
-					</span>
-				</li>
-				<% if @tag.points_count > 0 %>
-				<li class="tab3">
-					<span class="tab_header">
-						<%= link_to t('menu.briefing.points', :count => @tag.points_count), :action => "points" %>
-					</span>
-				</li>
-				<% end %>
-				<% if @tag.documents_count > 0 %>
-				<li class="tab4">
-					<span class="tab_header">
-						<%= link_to t('menu.briefing.documents', :count => @tag.documents_count), :action => "documents" %>
-					</span>
-				</li>
-				<% end %>
-				<% if @tag.discussions_count > 0 or @tag.priorities_count > 0 %>
-				<li class="tab5">
-					<span class="tab_header">
-						<% if @tag.discussions_count > 0 %>
-						<%= link_to t('menu.briefing.discussions', :count => @tag.discussions_count), :action => "discussions" %>
-						<% else %>
-						<%= link_to t('bulletins.new.discussion', :count => @tag.discussions_count), :action => "discussions" %>
-						<% end %>
-					</span>
-				</li>
-				<% end %>
-		</div>
-	</div>
+  		<div id="nav_sub_<% if ['yours','network','obama','not_obama','obama_opposed','show','controversial','rising','falling','random','newest','finished'].include?(params[:action]) %>2<% elsif ['points'].include?(params[:action]) %>3<% elsif ['documents'].include?(params[:action]) %>4<% elsif ['discussions'].include?(params[:action]) %>5<% end %>">
+  			<ul id="menu_sub">
+  				<li class="tab2">
+  					<span class="tab_header">
+  						<%= link_to t('menu.briefing.priorities', :count => @tag.priorities_count), :action => "show" %>
+  					</span>
+  				</li>
+  				<% if @tag.points_count > 0 %>
+  				<li class="tab3">
+  					<span class="tab_header">
+  						<%= link_to t('menu.briefing.points', :count => @tag.points_count), :action => "points" %>
+  					</span>
+  				</li>
+  				<% end %>
+  				<% if @tag.documents_count > 0 %>
+  				<li class="tab4">
+  					<span class="tab_header">
+  						<%= link_to t('menu.briefing.documents', :count => @tag.documents_count), :action => "documents" %>
+  					</span>
+  				</li>
+  				<% end %>
+  				<% if @tag.discussions_count > 0 or @tag.priorities_count > 0 %>
+  				<li class="tab5">
+  					<span class="tab_header">
+  						<% if @tag.discussions_count > 0 %>
+  						<%= link_to t('menu.briefing.discussions', :count => @tag.discussions_count), :action => "discussions" %>
+  						<% else %>
+  						<%= link_to t('bulletins.new.discussion', :count => @tag.discussions_count), :action => "discussions" %>
+  						<% end %>
+  					</span>
+  				</li>
+  				<% end %>
+  		</div>
+  	</div>
+  <% else %>
 
-	<% if ['yours','network','obama','not_obama','obama_opposed','show','controversial','rising','falling','random','newest','finished'].include?(params[:action])%>
-	<div id="nav_third">
-	<div id="nav_third_<% if ['yours'].include?(params[:action]) %>1<% elsif ['network'].include?(params[:action]) %>2<% elsif ['obama','not_obama','obama_opposed'].include?(params[:action]) %>3<% elsif ['show'].include?(params[:action]) %>4<% elsif ['controversial'].include?(params[:action]) %>5<% elsif ['rising'].include?(params[:action]) %>6<% elsif ['random'].include?(params[:action]) %>7<% elsif ['newest'].include?(params[:action]) %>8<% elsif ['finished'].include?(params[:action]) %>9<% end %>">
-		<ul id="menu_sub">
-			<li class="tab1">
-				<span class="tab_header">
-					<%= link_to t('menu.priorities.yours.short'), :action => "yours" %>
-				</span>
-			</li>
-			<li class="tab2">
-				<span class="tab_header">
-					<%= link_to t('menu.priorities.network.short'), :action => "network" %>
-				</span>
-			</li>			
-			<% if current_government.has_official? %>			
-				<li class="tab3">
-					<span class="tab_header">
-						<%= link_to t('menu.priorities.official.name', :official_user_name => current_government.official_user_short_name), :action => "obama" %>
-					</span>
-				</li>
-			<% end %>
-			<li class="tab4">
-				<span class="tab_header">
-					<%= link_to t('menu.priorities.everyone.top'), :action => "show" %>
-				</span>
-			</li>
-			<li class="tab5">
-				<span class="tab_header">
-					<%= link_to t('menu.priorities.everyone.controversial'), :action => "controversial" %>
-				</span>
-			</li>
-			<li class="tab6">
-				<span class="tab_header">
-					<%= link_to t('menu.priorities.everyone.rising'), :action => "rising" %>
-				</span>
-			</li>
-			<% if User.adapter != 'postgresql' %>
-			<li class="tab7">
-				<span class="tab_header">
-					<%= link_to t('menu.priorities.everyone.random'), :action => "random" %>
-				</span>
-			</li>
-			<% end %>
-			<li class="tab8">
-				<span class="tab_header">
-					<%= link_to t('menu.priorities.everyone.new'), :action => "newest" %>
-				</span>
-			</li>
-			<li class="tab9">
-				<span class="tab_header">
-					<%= link_to t('menu.priorities.everyone.finished'), :action => "finished" %>
-				</span>
-			</li>														
+  	<% if ['yours','network','obama','not_obama','obama_opposed','show','controversial','rising','falling','random','newest','finished'].include?(params[:action])%>
+  	<div id="nav_third">
+  	<div id="nav_third_<% if ['yours'].include?(params[:action]) %>1<% elsif ['network'].include?(params[:action]) %>2<% elsif ['obama','not_obama','obama_opposed'].include?(params[:action]) %>3<% elsif ['show'].include?(params[:action]) %>4<% elsif ['controversial'].include?(params[:action]) %>5<% elsif ['rising'].include?(params[:action]) %>6<% elsif ['random'].include?(params[:action]) %>7<% elsif ['newest'].include?(params[:action]) %>8<% elsif ['finished'].include?(params[:action]) %>9<% end %>">
+  		<ul id="menu_sub">
+  			<li class="tab1">
+  				<span class="tab_header">
+  					<%= link_to t('menu.priorities.yours.short'), :action => "yours" %>
+  				</span>
+  			</li>
+  			<li class="tab2">
+  				<span class="tab_header">
+  					<%= link_to t('menu.priorities.network.short'), :action => "network" %>
+  				</span>
+  			</li>			
+  			<% if current_government.has_official? %>			
+  				<li class="tab3">
+  					<span class="tab_header">
+  						<%= link_to t('menu.priorities.official.name', :official_user_name => current_government.official_user_short_name), :action => "obama" %>
+  					</span>
+  				</li>
+  			<% end %>
+  			<li class="tab4">
+  				<span class="tab_header">
+  					<%= link_to t('menu.priorities.everyone.top'), :action => "show" %>
+  				</span>
+  			</li>
+  			<li class="tab5">
+  				<span class="tab_header">
+  					<%= link_to t('menu.priorities.everyone.controversial'), :action => "controversial" %>
+  				</span>
+  			</li>
+  			<li class="tab6">
+  				<span class="tab_header">
+  					<%= link_to t('menu.priorities.everyone.rising'), :action => "rising" %>
+  				</span>
+  			</li>
+  			<% if User.adapter != 'postgresql' %>
+  			<li class="tab7">
+  				<span class="tab_header">
+  					<%= link_to t('menu.priorities.everyone.random'), :action => "random" %>
+  				</span>
+  			</li>
+  			<% end %>
+  			<li class="tab8">
+  				<span class="tab_header">
+  					<%= link_to t('menu.priorities.everyone.new'), :action => "newest" %>
+  				</span>
+  			</li>
+  			<li class="tab9">
+  				<span class="tab_header">
+  					<%= link_to t('menu.priorities.everyone.finished'), :action => "finished" %>
+  				</span>
+  			</li>														
 
-	</div>
-	</div>
+  	</div>
+  	</div>
+  	<% end %>
 	<% end %>
 
 <% end %>
