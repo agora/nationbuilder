@@ -743,9 +743,9 @@ class PrioritiesController < ApplicationController
           page.visual_effect :highlight, 'your_priorities'
           if facebook_session
             if @value == 1
-              page << fb_user_action(UserPublisher.create_endorsement(facebook_session, @endorsement, @priority))
+              page << fb_connect_stream_publish(UserPublisher.create_endorsement(facebook_session, @endorsement, @priority))
             else
-              page << fb_user_action(UserPublisher.create_opposition(facebook_session, @endorsement, @priority))
+              page << fb_connect_stream_publish(UserPublisher.create_opposition(facebook_session, @endorsement, @priority))
             end
           end
         end

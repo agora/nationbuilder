@@ -120,7 +120,7 @@ class CommentsController < ApplicationController
             page.replace 'activity_' + @activity.id.to_s + '_comment_form', render(:partial => "new_inline_small", :locals => {:comment => Comment.new, :activity => @activity})
             page << "pageTracker._trackPageview('/goal/comment')" if current_government.has_google_analytics?
             if facebook_session
-              page << fb_user_action(UserPublisher.create_comment(facebook_session, @comment, @activity))
+              page << fb_connect_stream_publish(UserPublisher.create_comment(facebook_session, @comment, @activity))
             end
           end     
         }     
