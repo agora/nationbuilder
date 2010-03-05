@@ -12,10 +12,12 @@
 	<% nav = 5 %>
 <% elsif ['points','revisions','documents','document_revisions','briefing'].include?(params[:controller]) %>	
 	<% nav = 3 %>
-<% elsif ['settings','profiles','blurbs','governments','color_schemes','email_templates','admin','passwords','pages','partners','tags','branches'].include?(params[:controller]) %>
+<% elsif ['settings','profiles','passwords','partners'].include?(params[:controller]) %>
 	<% nav = 6 %>
 <% elsif ['about','charts','widgets'].include?(params[:controller]) %>
 	<% nav = 7 %>
+<% elsif ['governments','email_templates','admin','blurbs','color_schemes','pages','branches','tags'].include?(params[:controller]) %>
+	<% nav = 8 %>
 <% else %>
 	<% nav = 0 %>
 <% end %>
@@ -35,7 +37,7 @@
 	<ul id="menu">
 		<% if current_government.is_tags? %>
 		<li class="tab1">
-			<span class="tab_header"><%= link_to current_government.tags_name.pluralize.titleize, :controller => "issues" %></span>
+			<span class="tab_header"><%= link_to current_government.tags_name.titleize, :controller => "issues" %></span>
 		</li>
 		<% end %>
 		<li class="tab2 mega">
@@ -117,36 +119,36 @@
 		<% if logged_in? %>
 		<li class="tab3 mega">
 			<span class="tab_header"><% if logged_in? and current_user.endorsements_count > 0 %><%= link_to current_government.briefing_name, your_priorities_points_url %><% else %><%= link_to current_government.briefing_name, newest_points_url %><% end %></span>
-			<div class="tab_body">
+      <!-- <div class="tab_body">
 
-				<div class="tab_subhead"><%= link_to t('menu.points.name'), your_priorities_points_url %> (<%= number_with_delimiter(current_government.points_count) %>)</div>
-				<div class="tab_sublinks">
-					<%= link_to t('menu.briefing.yours'), points_url %>
-					&middot; <%= link_to t('menu.briefing.your_priorities'), your_priorities_points_url %>
-					&middot; <%= link_to t('menu.briefing.all'), newest_points_url %>
-					&middot; <%= link_to t('menu.briefing.revised'), revised_points_url %>
-				</div>
-			
-				<div class="tab_subhead"><%= link_to t('menu.documents.name'), your_priorities_documents_url %> (<%= number_with_delimiter(current_government.documents_count) %>)</div>
-				<div class="tab_sublinks">
-					<%= link_to t('menu.briefing.yours'), documents_url %>
-					&middot; <%= link_to t('menu.briefing.your_priorities'), your_priorities_documents_url %>
-					&middot; <%= link_to t('menu.briefing.all'), newest_documents_url %>
-					&middot; <%= link_to t('menu.briefing.revised'), revised_documents_url %>
-				</div>
-			
-				<div class="tab_sublinks">
-						<%= t('menu.briefing.research.needed', :points_name => link_to(t('points.name'), :controller => "briefing", :action => "documents"), :documents_name => link_to(t('document.name'), :controller => "briefing", :action => "points")) %><br/>
-					<% if current_government.contributors_count > 0 %>
-						<%= link_to t('menu.briefing.research.contributors', :count => number_with_delimiter(current_government.contributors_count)), :controller => "briefing", :action => "contributors" %>
-					<% end %>						
-				</div>
+        <div class="tab_subhead"><%= link_to t('menu.points.name'), your_priorities_points_url %> (<%= number_with_delimiter(current_government.points_count) %>)</div>
+        <div class="tab_sublinks">
+          <%= link_to t('menu.briefing.yours'), points_url %>
+          &middot; <%= link_to t('menu.briefing.your_priorities'), your_priorities_points_url %>
+          &middot; <%= link_to t('menu.briefing.all'), newest_points_url %>
+          &middot; <%= link_to t('menu.briefing.revised'), revised_points_url %>
+        </div>
+      
+        <div class="tab_subhead"><%= link_to t('menu.documents.name'), your_priorities_documents_url %> (<%= number_with_delimiter(current_government.documents_count) %>)</div>
+        <div class="tab_sublinks">
+          <%= link_to t('menu.briefing.yours'), documents_url %>
+          &middot; <%= link_to t('menu.briefing.your_priorities'), your_priorities_documents_url %>
+          &middot; <%= link_to t('menu.briefing.all'), newest_documents_url %>
+          &middot; <%= link_to t('menu.briefing.revised'), revised_documents_url %>
+        </div>
+      
+        <div class="tab_sublinks">
+            <%= t('menu.briefing.research.needed', :points_name => link_to(t('points.name'), :controller => "briefing", :action => "documents"), :documents_name => link_to(t('document.name'), :controller => "briefing", :action => "points")) %><br/>
+          <% if current_government.contributors_count > 0 %>
+            <%= link_to t('menu.briefing.research.contributors', :count => number_with_delimiter(current_government.contributors_count)), :controller => "briefing", :action => "contributors" %>
+          <% end %>           
+        </div>
 
-				<div class="tab_sublinks">
-				
-				</div>
+        <div class="tab_sublinks">
+        
+        </div>
 
-			</div>
+      </div> -->
 		</li>
 		<% else %>
 		<li class="tab3">
@@ -156,81 +158,81 @@
 		<% if logged_in? %>
 		<li class="tab4 mega">
 			<span class="tab_header"><%= link_to t('menu.news.name'), :controller => "news", :action => "discussions" %></span>
-			<div class="tab_body">
-				
-				<div class="tab_subhead"><%= link_to t('menu.news.discussions'), :controller => "news", :action => "discussions" %></div>
-				<div class="tab_sublinks">
-					<%= link_to t('menu.news.all'), :controller => "news", :action => "discussions" %>
-					&middot; <%= link_to t('menu.news.yours'), :controller => "news", :action => "your_discussions" %>
-					&middot; <%= link_to t('menu.news.your_priorities'), :controller => "news", :action => "your_priority_discussions" %>
-					&middot; <%= link_to t('menu.news.created'), :controller => "news", :action => "your_priorities_created_discussions" %>	
-					&middot; <%= link_to t('menu.news.network'), :controller => "news", :action => "your_network_discussions" %>	
-					&middot; <%= link_to t('menu.news.followers'), :controller => "news", :action => "your_followers_discussions" %>						
-				</div>
-				
-				<div class="tab_subhead"><%= link_to current_government.briefing_name + " activity", :controller => "news", :action => "points" %></div>
-				<div class="tab_sublinks">
-					<%= link_to t('menu.news.all'), :controller => "news", :action => "points" %>
-					&middot; <%= link_to t('menu.news.yours'), :controller => "news", :action => "your_points" %>
-					&middot; <%= link_to t('menu.news.your_priorities'), :controller => "news", :action => "your_priority_points" %>	
-					&middot; <%= link_to t('menu.news.created'), :controller => "news", :action => "your_priorities_created_points" %>		
-					<% if current_user.followings_count > 0 %>
-					&middot; <%= link_to t('menu.news.network'), :controller => "news", :action => "your_network_points" %>
-					<% end %>
-					<% if current_user.followers_count > 0 %>
-					&middot; <%= link_to t('menu.news.followers'), :controller => "news", :action => "your_followers_points" %>
-					<% end %>
-				</div>
-				
-				<% if current_government.has_official? %>
-					<div class="tab_subhead">
-						<%= link_to t('menu.news.official_user_activity', :official_user_name => current_government.official_user.name), :controller => "news", :action => "obama" %>
-					</div>
-					<div class="tab_sublinks">
-						<%= link_to t('menu.news.your_priorities'), :controller => "news", :action => "your_priority_obama" %>
-						&middot; <%= link_to t('menu.news.created'), :controller => "news", :action => "your_priorities_created_obama" %>		
-					</div>
-				<% end %>				
-				
-				<div class="tab_subhead"><%= link_to current_government.currency_name.titleize, :controller => "news", :action => "capital" %></div>
-				<div class="tab_sublinks">
-					<%= link_to t('menu.news.everyone'), :controller => "news", :action => "capital" %>
-					&middot; <%= link_to t('menu.news.yours'), :controller => "news", :action => "your_capital" %>
-					<% if current_user.followings_count > 0 %>
-					&middot; <%= link_to t('menu.news.network'), :controller => "news", :action => "your_network_capital" %>
-					<% end %>
-					<% if current_user.followers_count > 0 %>
-					&middot; <%= link_to t('menu.news.followers'), :controller => "news", :action => "your_followers_capital" %>	
-					<% end %>
-				</div>			
-			
-				<div class="tab_subhead"><%= link_to t('menu.news.acquisitions'), :controller => "news", :action => "changes_voting" %></div>
-				<div class="tab_sublinks">
-					
-					<%= link_to t('menu.news.proposals'), :controller => "news", :action => "changes" %>
-					&middot; <%= link_to t('menu.news.voting'), :controller => "news", :action => "changes_voting" %>
-					<br/>
-					<%= link_to t('menu.news.your_activity'), :controller => "news", :action => "your_changes" %>					
-					&middot; <%= link_to t('menu.news.created'), :controller => "news", :action => "your_priorities_created_changes" %>
-					&middot; <%= link_to t('menu.news.your_priorities'), :controller => "news", :action => "your_priority_changes_activity" %>
-					&middot; <%= link_to t('menu.news.all_activity'), :controller => "news", :action => "changes_activity" %>
-				</div>
+      <!-- <div class="tab_body">
+        
+        <div class="tab_subhead"><%= link_to t('menu.news.discussions'), :controller => "news", :action => "discussions" %></div>
+        <div class="tab_sublinks">
+          <%= link_to t('menu.news.all'), :controller => "news", :action => "discussions" %>
+          &middot; <%= link_to t('menu.news.yours'), :controller => "news", :action => "your_discussions" %>
+          &middot; <%= link_to t('menu.news.your_priorities'), :controller => "news", :action => "your_priority_discussions" %>
+          &middot; <%= link_to t('menu.news.created'), :controller => "news", :action => "your_priorities_created_discussions" %> 
+          &middot; <%= link_to t('menu.news.network'), :controller => "news", :action => "your_network_discussions" %>  
+          &middot; <%= link_to t('menu.news.followers'), :controller => "news", :action => "your_followers_discussions" %>            
+        </div>
+        
+        <div class="tab_subhead"><%= link_to current_government.briefing_name + " activity", :controller => "news", :action => "points" %></div>
+        <div class="tab_sublinks">
+          <%= link_to t('menu.news.all'), :controller => "news", :action => "points" %>
+          &middot; <%= link_to t('menu.news.yours'), :controller => "news", :action => "your_points" %>
+          &middot; <%= link_to t('menu.news.your_priorities'), :controller => "news", :action => "your_priority_points" %>  
+          &middot; <%= link_to t('menu.news.created'), :controller => "news", :action => "your_priorities_created_points" %>    
+          <% if current_user.followings_count > 0 %>
+          &middot; <%= link_to t('menu.news.network'), :controller => "news", :action => "your_network_points" %>
+          <% end %>
+          <% if current_user.followers_count > 0 %>
+          &middot; <%= link_to t('menu.news.followers'), :controller => "news", :action => "your_followers_points" %>
+          <% end %>
+        </div>
+        
+        <% if current_government.has_official? %>
+          <div class="tab_subhead">
+            <%= link_to t('menu.news.official_user_activity', :official_user_name => current_government.official_user.name), :controller => "news", :action => "obama" %>
+          </div>
+          <div class="tab_sublinks">
+            <%= link_to t('menu.news.your_priorities'), :controller => "news", :action => "your_priority_obama" %>
+            &middot; <%= link_to t('menu.news.created'), :controller => "news", :action => "your_priorities_created_obama" %>   
+          </div>
+        <% end %>       
+        
+        <div class="tab_subhead"><%= link_to current_government.currency_name.titleize, :controller => "news", :action => "capital" %></div>
+        <div class="tab_sublinks">
+          <%= link_to t('menu.news.everyone'), :controller => "news", :action => "capital" %>
+          &middot; <%= link_to t('menu.news.yours'), :controller => "news", :action => "your_capital" %>
+          <% if current_user.followings_count > 0 %>
+          &middot; <%= link_to t('menu.news.network'), :controller => "news", :action => "your_network_capital" %>
+          <% end %>
+          <% if current_user.followers_count > 0 %>
+          &middot; <%= link_to t('menu.news.followers'), :controller => "news", :action => "your_followers_capital" %>  
+          <% end %>
+        </div>      
+      
+        <div class="tab_subhead"><%= link_to t('menu.news.acquisitions'), :controller => "news", :action => "changes_voting" %></div>
+        <div class="tab_sublinks">
+          
+          <%= link_to t('menu.news.proposals'), :controller => "news", :action => "changes" %>
+          &middot; <%= link_to t('menu.news.voting'), :controller => "news", :action => "changes_voting" %>
+          <br/>
+          <%= link_to t('menu.news.your_activity'), :controller => "news", :action => "your_changes" %>         
+          &middot; <%= link_to t('menu.news.created'), :controller => "news", :action => "your_priorities_created_changes" %>
+          &middot; <%= link_to t('menu.news.your_priorities'), :controller => "news", :action => "your_priority_changes_activity" %>
+          &middot; <%= link_to t('menu.news.all_activity'), :controller => "news", :action => "changes_activity" %>
+        </div>
 
-				<div class="tab_subhead"><%= link_to t('menu.news.all_activity'), :controller => "news", :action => "activities" %></div>
-				<div class="tab_sublinks">
-					<%= link_to t('menu.news.all'), :controller => "news", :action => "activities" %>	
-					&middot; <%= link_to t('menu.news.yours'), :controller => "news", :action => "your_activities" %>	
-					&middot; <%= link_to t('menu.news.your_priorities'), :controller => "news", :action => "your_priority_activities" %>
-					&middot; <%= link_to t('menu.news.created'), :controller => "news", :action => "your_priorities_created_activities" %>					
-					<% if current_user.followings_count > 0 %>
-						&middot; <%= link_to t('menu.news.network'), :controller => "news", :action => "your_network_activities" %>
-					<% end %>
-					<% if current_user.followers_count > 0 %>					
-						&middot; <%= link_to t('menu.news.followers'), :controller => "news", :action => "your_followers_activities" %>
-					<% end %>
-				</div>
+        <div class="tab_subhead"><%= link_to t('menu.news.all_activity'), :controller => "news", :action => "activities" %></div>
+        <div class="tab_sublinks">
+          <%= link_to t('menu.news.all'), :controller => "news", :action => "activities" %> 
+          &middot; <%= link_to t('menu.news.yours'), :controller => "news", :action => "your_activities" %> 
+          &middot; <%= link_to t('menu.news.your_priorities'), :controller => "news", :action => "your_priority_activities" %>
+          &middot; <%= link_to t('menu.news.created'), :controller => "news", :action => "your_priorities_created_activities" %>          
+          <% if current_user.followings_count > 0 %>
+            &middot; <%= link_to t('menu.news.network'), :controller => "news", :action => "your_network_activities" %>
+          <% end %>
+          <% if current_user.followers_count > 0 %>         
+            &middot; <%= link_to t('menu.news.followers'), :controller => "news", :action => "your_followers_activities" %>
+          <% end %>
+        </div>
 
-			</div>
+      </div> -->
 		</li>
 		<% end %>
 		<li class="tab5 mega">
@@ -314,79 +316,20 @@
 				<% end %>
 			</div>
 		</li>
-		<% if logged_in? %>
-		<li class="tab6 mega">
+		<li class="right">
 			<span class="tab_header">
-				<%= link_to t('menu.settings.name'), settings_url %>
-			</span>
-			<div class="tab_body">
-				<div class="tab_subhead">
-					<%= link_to t('menu.settings.account'), settings_url %>
-				</div>
-				<div class="tab_sublinks">
-					<%= link_to t('menu.settings.picture'), picture_settings_url %>
-					&middot; <%= link_to t('menu.settings.bio'), new_user_profile_url(current_user) %>
-					<% if current_government.is_legislators? %>
-						&middot; <%= link_to t('menu.settings.legislators'), legislators_settings_url %>
-					<% end %>
-					<br/>
-					<% if not current_user.has_facebook? %>
-						<%= link_to t('menu.settings.password'), edit_password_url(current_user) %> &middot;
-					<% end %>
-					<%= link_to t('menu.settings.emails'), signups_settings_url %>
-				</div>
-				
-				<div class="tab_subhead">
-					<% if current_user.is_partner? %>
-						<%= link_to t('menu.partner.name'), edit_partner_url(current_user.partner) %>
-					<% else %>
-						<%= link_to t('menu.partner.become'), partners_url %>					
-					<% end %>
-				</div>
-				<div class="tab_sublinks">
-				<% if current_user.is_partner? %>
-					<%= link_to t('menu.partner.account'), edit_partner_url(current_user.partner) %>
-					&middot; <%= link_to t('menu.partner.logo'), picture_partner_path(current_user.partner) %>
-					&middot; <%= link_to t('menu.partner.email'), email_partner_path(current_user.partner) %>
-				<% end %>
-				</div>
-				
-				<% if current_user.is_admin? %>
-					<div class="tab_subhead">
-						<%= link_to t('menu.admin.name'), edit_government_url(current_government) %>
-					</div>
-					<div class="tab_sublinks">
-						<%= link_to t('menu.admin.government.name'), edit_government_url(current_government) %>
-						&middot; <%= link_to t('menu.admin.branches'), branches_url %>
-						<% if current_government.is_tags? %>
-							&middot; <%= link_to current_government.tags_name.pluralize.titleize, tags_url %>
-						<% end %>
-						&middot; <%= link_to t('menu.admin.apis'), apis_government_url(current_government) %>							
-						<br/>
-						<%= link_to t('menu.admin.blurbs'), blurbs_url %>						
-						&middot; <%= link_to t('menu.admin.pages'), pages_url %>
-						&middot; <%= link_to t('menu.admin.emails'), email_templates_url %>		
-						<br/>
-						<%= link_to t('menu.admin.graphics'), :controller => "admin", :action => "picture" %>
-						&middot; <%= link_to t('menu.admin.colors'), color_schemes_url %>
-					</div>
-				<% end %>
-				
-				<div class="tab_sublinks">
-				<% if facebook_session %>
+			  <% if facebook_session %>
 					<%= fb_logout_link t('menu.logout'), logout_path %>
 				<% else %>
 			  		<%= link_to t('menu.logout'), logout_path %>
 				<% end %>
-				</div>
-
-			</div>
-		</li>		
-		<% end %>
-		<li class="tab7 mega">
+			</span>		  
+		</li>
+		<li class="tab7 mega right">
 			<span class="tab_header">
 				<%= link_to t('menu.about.name'), :controller => "about" %>
 			</span>
+      <!--
 			<div class="tab_body">
 				<div class="tab_subhead"><%= link_to t('menu.about.site'), :controller => "about" %></div>
 				<div class="tab_sublinks">
@@ -415,16 +358,89 @@
 				</div>
 				<div class="tab_sublinks">
 					<%= link_to t('menu.widgets.priorities.short'), :controller => "widgets", :action => "priorities" %>
-					<!-- 
-					&middot; <%= link_to t('menu.widgets.discussions.short'), :controller => "widgets", :action => "discussions" %>
-					&middot; <%= link_to t('menu.widgets.points.short'), :controller => "widgets", :action => "points" %>					
-				-->
+
 				</div>
 				
 				<%= blurb('about_menu_extra')%>
-				
 			</div>
+			-->
 		</li>
+		<% if logged_in? and current_user.is_admin? %>
+		<li class="tab8 mega right">
+			<span class="tab_header">
+				<%= link_to t('menu.admin.name'), edit_government_url(current_government) %>
+			</span>		  
+		</li>
+	  <% end %>
+		<% if logged_in? %>
+		<li class="tab6 mega right">
+			<span class="tab_header">
+				<%= link_to t('menu.settings.name'), settings_url %>
+			</span>
+      <!-- <div class="tab_body">
+        <div class="tab_subhead">
+          <%= link_to t('menu.settings.account'), settings_url %>
+        </div>
+        <div class="tab_sublinks">
+          <%= link_to t('menu.settings.picture'), picture_settings_url %>
+          &middot; <%= link_to t('menu.settings.bio'), new_user_profile_url(current_user) %>
+          <% if current_government.is_legislators? %>
+            &middot; <%= link_to t('menu.settings.legislators'), legislators_settings_url %>
+          <% end %>
+          <br/>
+          <% if not current_user.has_facebook? %>
+            <%= link_to t('menu.settings.password'), edit_password_url(current_user) %> &middot;
+          <% end %>
+          <%= link_to t('menu.settings.emails'), signups_settings_url %>
+        </div>
+        
+        <div class="tab_subhead">
+          <% if current_user.is_partner? %>
+            <%= link_to t('menu.partner.name'), edit_partner_url(current_user.partner) %>
+          <% else %>
+            <%= link_to t('menu.partner.become'), partners_url %>         
+          <% end %>
+        </div>
+        <div class="tab_sublinks">
+        <% if current_user.is_partner? %>
+          <%= link_to t('menu.partner.account'), edit_partner_url(current_user.partner) %>
+          &middot; <%= link_to t('menu.partner.logo'), picture_partner_path(current_user.partner) %>
+          &middot; <%= link_to t('menu.partner.email'), email_partner_path(current_user.partner) %>
+        <% end %>
+        </div>
+        
+        <% if current_user.is_admin? %>
+          <div class="tab_subhead">
+            <%= link_to t('menu.admin.name'), edit_government_url(current_government) %>
+          </div>
+          <div class="tab_sublinks">
+            <%= link_to t('menu.admin.government.name'), edit_government_url(current_government) %>
+            &middot; <%= link_to t('menu.admin.branches'), branches_url %>
+            <% if current_government.is_tags? %>
+              &middot; <%= link_to current_government.tags_name.pluralize.titleize, tags_url %>
+            <% end %>
+            &middot; <%= link_to t('menu.admin.apis'), apis_government_url(current_government) %>             
+            <br/>
+            <%= link_to t('menu.admin.blurbs'), blurbs_url %>           
+            &middot; <%= link_to t('menu.admin.pages'), pages_url %>
+            &middot; <%= link_to t('menu.admin.emails'), email_templates_url %>   
+            <br/>
+            <%= link_to t('menu.admin.graphics'), :controller => "admin", :action => "picture" %>
+            &middot; <%= link_to t('menu.admin.colors'), color_schemes_url %>
+          </div>
+        <% end %>
+        
+        <div class="tab_sublinks">
+        <% if facebook_session %>
+          <%= fb_logout_link t('menu.logout'), logout_path %>
+        <% else %>
+            <%= link_to t('menu.logout'), logout_path %>
+        <% end %>
+        </div>
+
+      </div> -->
+		</li>		
+		<% end %>
 	</ul>
 	
 	<% if current_government.has_fav_icon? %>
@@ -455,7 +471,7 @@
 	<% else %>
 		<%= render :partial => "network/nav", :locals => { :show_third => show_third } %>
 	<% end %>
-<% elsif nav == 6 %>
+<% elsif nav == 6 or nav == 8 %>
 	<% if ['governments','blurbs','color_schemes','admin','email_templates','pages','tags','branches'].include?(params[:controller]) %>
 		<%= render :partial => "admin/nav", :locals => { :show_third => show_third } %>
 	<% elsif ['partners'].include?(params[:controller]) and logged_in? %>
@@ -464,6 +480,7 @@
 		<%= render :partial => "settings/nav", :locals => { :show_third => show_third } %>
 	<% end %>
 <% elsif nav == 7 %>
+  <%= render :partial => "about/nav", :locals => { :show_third => show_third } %>
 	<% if ['charts'].include?(params[:controller])%>
 		<%= render :partial => "charts/nav", :locals => { :show_third => show_third } %>
 	<% elsif ['widgets'].include?(params[:controller])%>

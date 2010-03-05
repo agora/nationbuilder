@@ -16,6 +16,7 @@
     <div id="contentwrap">
       <div id="content_text">
         <div style="text-align:center"><%= blurb("header") %></div>
+        <%= flash_div :warning, :notice, :error %>
         <%= yield %>
       </div>
     </div>

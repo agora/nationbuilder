@@ -1536,7 +1536,7 @@ is:
                 label: "Lykilorð"
         create:
             success: "Velkomin/n aftur, {{user_name}}."
-            failed: "Þú ert EKKI skráð/ur inn, vinsamlegast athugaðu notendanafn og lykilorð eða smelltu á 'Gleymt lykilorð' til að fá nýtt."  
+            failed: "Rangt netfang og/eða lykilorð."
             failed_twitter: "Innskráning gegnum Twitter mistókst."
             try_again: "Obbobbobb, reyndu aftur."
         destroy: "Aftengjast. Vonandi sjáum við þig fljótlega aftur."
