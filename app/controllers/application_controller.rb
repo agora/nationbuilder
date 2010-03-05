@@ -21,6 +21,9 @@ class ApplicationController < ActionController::Base
 
   # before_filter Proc.new { I18n.reload! } # FFJ: HACK to be able to edit locale yml files on the fly in production mode
   
+  # Login required if the website is locked - using http://github.com/chendo/priority_filter
+  before_filter :lock, :if => [:website_locked?]
+  
   # switch to the right database for this government
   before_filter :check_subdomain
   
@@ -202,6 +205,14 @@ class ApplicationController < ActionController::Base
     return false if Facebooker.api_key
     return true if is_robot?
     return true
+  end
+
+  def website_locked?
+    return true if DB_CONFIG[RAILS_ENV]['website_locked']
+  end
+  
+  def lock
+    login_required unless logged_in? or params[:controller] == 'sessions'
   end
   
   def bad_token

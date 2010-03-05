@@ -31,7 +31,6 @@ ENV['TWITTER_LOGIN'] = DB_CONFIG[RAILS_ENV]['twitter_login']
 ENV['TWITTER_PASSWORD'] = DB_CONFIG[RAILS_ENV]['twitter_password']
 ENV['WEBSOLR_URL'] = DB_CONFIG[RAILS_ENV]['websolr_url']
 S3_CONFIG = YAML.load_file("#{RAILS_ROOT}/config/s3.yml") if File.exists?("#{RAILS_ROOT}/config/s3.yml")
-Paperclip.options[:image_magick_path] = "/opt/local/bin"
 
 # Use memcached with namespace
 config.cache_store = :mem_cache_store, 'localhost:11211', { :namespace => DB_CONFIG[RAILS_ENV]['memcached_namespace'] }

@@ -5,7 +5,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -134,3 +134,18 @@ class ActiveSupport::Cache::MemoryStore
     @data[name] = value
   end
 end
+
+
+# /Library/Ruby/Gems/1.8/gems/rails-2.3.2/lib/rails/gem_dependency.rb:99:Warning: Gem::Dependency#version_requirements is deprecated and will be removed on or after August 2010.  Use #requirement
+# https://rails.lighthouseapp.com/projects/8994/tickets/4026
+# http://www.mattvsworld.com/blog/2010/03/version_requirements-deprecated-warning-in-rails/
+# if Gem::VERSION >= "1.3.6"
+#   module Rails
+#     class GemDependency
+#       def requirement
+#         r = super
+#         (r == Gem::Requirement.default) ? nil : r
+#       end
+#     end
+#   end
+# end
