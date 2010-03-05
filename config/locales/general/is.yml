@@ -1310,7 +1310,7 @@ is:
             last_name:
                 label: "Eftirnafn"
             login:
-                label: "Hvernig viltu að aðrir sjái þig á síðunni?"
+                label: "Undir hvaða nafni viltu birtast á vefnum?"
                 example: "(Má vera nafn eða dulnefni)"
             email:
                 label: "Netfang"
@@ -1427,14 +1427,14 @@ is:
             success: "Velkomin/n til {{government_name}}"
             submit_and_endorse: "Styðja og sækja um"
             submit_and_oppose: "Vera á móti og sækja um"
-            submit: "Tengjast tengslanetinu"
+            submit: "Stofna aðgang"
             login: "<b>Ertu þegar skráð/ur?</b>"
             validation:
                 login: "Vinsamlegast gefðu upp nafn sem þú vilt að verði notað á síðunni."
             facebook_outro: "eða ef þú vilt ekki nota Facebook aðganginn þinn, fylltu út þetta einfalda eyðublað:"
             password:
                 label: "Lykilorð"
-                confirm: "lykilorð aftur"
+                confirm: "Lykilorð aftur"
             error_message: "Það komu upp vandamál við að búa til aðganginn þinn"
         signups:
             title: "Tölvupóst yfirlit fyrir {{user_name}}"
@@ -1528,8 +1528,8 @@ is:
                 twitter: "Twitter"
                 facebook: "Facebook"
                 options: "eða <b>skráðu þig strax inn</b> með:"
-            intro: "<b><a href='{{signup_url}}'>Gerstu meðlimur</a></b> eða <a href='#' id='login_link'>skráðu þig inn með {{government_name}}</a>."
-            forgot: "Ég hef gleymt lykilorðinu mínu"
+            intro: "<b><a href='/login'>Skráðu þig inn</a></b> eða <a href='{{signup_url}}'>nýskráðu þig</a>."
+            forgot: "Gleymt lykilorð"
             email:
                 label: "Netfang"
             password:

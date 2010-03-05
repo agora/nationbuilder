@@ -1343,6 +1343,21 @@ body {
   background: white;
 }
 
+#page.narrow {
+  width: 530px;
+  margin-top: 60px;
+}
+
+#page.narrow #content_text {
+  padding: 10px !important;
+}
+
+#page.narrow #blurb_header {
+  padding-bottom: 10px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #dddddd;
+}
+
 /*#toolbar {
   background: #027adc !important;
 }
@@ -1395,5 +1410,25 @@ table.list td {
   width: 100%;
 }
 
+table.login {
+  margin: 0 auto;
+}
+
+table.login td.header {
+  font-size: 14pt;
+  padding-right: 20px;
+}
+
+table.login td.input input {
+  font-size: 14pt;
+}
+
+table.login .yellow_button {
+  font-size: 12pt;
+}
+
+table.login .small {
+  font-size: 9pt;
+}
 
 /* END AGORA updates  */
