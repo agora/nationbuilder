@@ -1280,7 +1280,7 @@ is:
             title: "Þínar stillingar fyrir {{government_name}}"
         notifications:
             title: "Þínar tölvupósttilkynningar"
-        saved: "Vistaðar stillingar"
+        saved: "Stillingar vistaðar"
         delete:
             name: "Eyða þínum aðgangi"
             title: "Eyða aðgangi þínum að {{government_name}}"

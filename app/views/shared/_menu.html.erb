@@ -42,79 +42,79 @@
 		<% end %>
 		<li class="tab2 mega">
 			<span class="tab_header"><%= link_to t('menu.priorities.name'), :controller => "priorities", :action => current_government.homepage %></span>
-			<div class="tab_body">
-				<% if logged_in? %>
-					<div class="tab_subhead">
-					<% if logged_in? %>
-						<%= link_to t('menu.priorities.yours.name'), yours_priorities_url %> (<%= current_user.endorsements_count %>)
-					<% else %>
-						<%= link_to t('menu.priorities.yours.name'), new_user_url %>
-					<% end %>
-					</div>
-					<div class="tab_sublinks">
-					<%= link_to t('menu.priorities.yours.active'), yours_priorities_url %>
-					&middot; <%= link_to t('menu.priorities.yours.top'), yours_top_priorities_url %>
-					&middot; <%= link_to t('menu.priorities.yours.ads'), yours_ads_priorities_url %>					
-					&middot; <%= link_to t('menu.priorities.yours.lowest'), yours_lowest_priorities_url %>
-					&middot; <%= link_to t('menu.priorities.yours.finished'), yours_finished_priorities_url %>
-					<br/>
-					<%= link_to t('menu.priorities.yours.created'), yours_created_priorities_url %> &middot; <%= link_to t('menu.priorities.consider'), consider_priorities_url %> &middot; <%= link_to t('menu.priorities.quiz'), :controller => "prioritizer" %>
-					
-					</div>
-					<div class="tab_subhead">
-						<%= link_to t('menu.priorities.network.name'), network_priorities_url %>
-					</div>
-					<div class="tab_sublinks"></div>
+      <!-- <div class="tab_body">
+        <% if logged_in? %>
+          <div class="tab_subhead">
+          <% if logged_in? %>
+            <%= link_to t('menu.priorities.yours.name'), yours_priorities_url %> (<%= current_user.endorsements_count %>)
+          <% else %>
+            <%= link_to t('menu.priorities.yours.name'), new_user_url %>
+          <% end %>
+          </div>
+          <div class="tab_sublinks">
+          <%= link_to t('menu.priorities.yours.active'), yours_priorities_url %>
+          &middot; <%= link_to t('menu.priorities.yours.top'), yours_top_priorities_url %>
+          &middot; <%= link_to t('menu.priorities.yours.ads'), yours_ads_priorities_url %>          
+          &middot; <%= link_to t('menu.priorities.yours.lowest'), yours_lowest_priorities_url %>
+          &middot; <%= link_to t('menu.priorities.yours.finished'), yours_finished_priorities_url %>
+          <br/>
+          <%= link_to t('menu.priorities.yours.created'), yours_created_priorities_url %> &middot; <%= link_to t('menu.priorities.consider'), consider_priorities_url %> &middot; <%= link_to t('menu.priorities.quiz'), :controller => "prioritizer" %>
+          
+          </div>
+          <div class="tab_subhead">
+            <%= link_to t('menu.priorities.network.name'), network_priorities_url %>
+          </div>
+          <div class="tab_sublinks"></div>
 
-				<% end %>
-				
-				<div class="tab_subhead">
-					<%= link_to t('menu.priorities.everyone.name'), priorities_url %> (<%= number_with_delimiter(current_government.priorities_count) %>)
-				</div>
-				<div class="tab_sublinks">
-				<%= link_to t('menu.priorities.everyone.top'), top_priorities_url %>
-				&middot; <%= link_to t('menu.priorities.everyone.ads'), ads_priorities_url %>
-				&middot; <%= link_to t('menu.priorities.everyone.controversial'), controversial_priorities_url %>
-				&middot; <%= link_to t('menu.priorities.everyone.rising'), rising_priorities_url %>
-				&middot; <%= link_to t('menu.priorities.everyone.falling'), falling_priorities_url %>
-				&middot; <%= link_to t('menu.priorities.everyone.random'), random_priorities_url %>
-				&middot; <%= link_to t('menu.priorities.everyone.new'), newest_priorities_url %>
-				&middot; <%= link_to t('menu.priorities.everyone.finished'), finished_priorities_url %>
-				</div>		
-				
-				
-				<% if current_government.is_branches? %>
-				
-					<% for branch in current_branches %>
-				
-						<div class="tab_subhead">
-							<%= link_to t('menu.priorities.branch.name', :branch_name => branch.name), top_branch_priorities_url(branch) %><% if branch.endorsements_count > 0 %> (<%= number_with_delimiter(branch.endorsements_count) %>)<% end %>
-						</div>
-						<div class="tab_sublinks">
-						<%= link_to t('menu.priorities.everyone.top'), top_branch_priorities_url(branch) %>
-						&middot; <%= link_to t('menu.priorities.everyone.controversial'), controversial_branch_priorities_url(branch) %>
-						&middot; <%= link_to t('menu.priorities.everyone.rising'), rising_branch_priorities_url(branch) %>
-						&middot; <%= link_to t('menu.priorities.everyone.falling'), falling_branch_priorities_url(branch) %>
-						&middot; <%= link_to t('menu.priorities.everyone.random'), random_branch_priorities_url(branch) %>
-						&middot; <%= link_to t('menu.priorities.everyone.new'), newest_branch_priorities_url(branch) %>
-						</div>
-				
-					<% end %>
-				
-				<% end %>
-				
-				<% if current_government.has_official? %>
-					<div class="tab_subhead">
-						<%= link_to t('menu.priorities.official.name', :official_user_name => current_government.official_user_short_name), obama_priorities_url %> (<%= number_with_delimiter(current_government.official_user_priorities_count) %>)
-					</div>
-					<div class="tab_sublinks">
-					<%= link_to t('menu.priorities.official.agenda_endorsed'), obama_priorities_url %>
-					&middot; <%= link_to t('menu.priorities.official.agenda_not'), not_obama_priorities_url %>
-					&middot; <%= link_to t('menu.priorities.official.agenda_opposed'), obama_opposed_priorities_url %>					
-					</div>
-				<% end %>
-				
-			</div>
+        <% end %>
+        
+        <div class="tab_subhead">
+          <%= link_to t('menu.priorities.everyone.name'), priorities_url %> (<%= number_with_delimiter(current_government.priorities_count) %>)
+        </div>
+        <div class="tab_sublinks">
+        <%= link_to t('menu.priorities.everyone.top'), top_priorities_url %>
+        &middot; <%= link_to t('menu.priorities.everyone.ads'), ads_priorities_url %>
+        &middot; <%= link_to t('menu.priorities.everyone.controversial'), controversial_priorities_url %>
+        &middot; <%= link_to t('menu.priorities.everyone.rising'), rising_priorities_url %>
+        &middot; <%= link_to t('menu.priorities.everyone.falling'), falling_priorities_url %>
+        &middot; <%= link_to t('menu.priorities.everyone.random'), random_priorities_url %>
+        &middot; <%= link_to t('menu.priorities.everyone.new'), newest_priorities_url %>
+        &middot; <%= link_to t('menu.priorities.everyone.finished'), finished_priorities_url %>
+        </div>    
+        
+        
+        <% if current_government.is_branches? %>
+        
+          <% for branch in current_branches %>
+        
+            <div class="tab_subhead">
+              <%= link_to t('menu.priorities.branch.name', :branch_name => branch.name), top_branch_priorities_url(branch) %><% if branch.endorsements_count > 0 %> (<%= number_with_delimiter(branch.endorsements_count) %>)<% end %>
+            </div>
+            <div class="tab_sublinks">
+            <%= link_to t('menu.priorities.everyone.top'), top_branch_priorities_url(branch) %>
+            &middot; <%= link_to t('menu.priorities.everyone.controversial'), controversial_branch_priorities_url(branch) %>
+            &middot; <%= link_to t('menu.priorities.everyone.rising'), rising_branch_priorities_url(branch) %>
+            &middot; <%= link_to t('menu.priorities.everyone.falling'), falling_branch_priorities_url(branch) %>
+            &middot; <%= link_to t('menu.priorities.everyone.random'), random_branch_priorities_url(branch) %>
+            &middot; <%= link_to t('menu.priorities.everyone.new'), newest_branch_priorities_url(branch) %>
+            </div>
+        
+          <% end %>
+        
+        <% end %>
+        
+        <% if current_government.has_official? %>
+          <div class="tab_subhead">
+            <%= link_to t('menu.priorities.official.name', :official_user_name => current_government.official_user_short_name), obama_priorities_url %> (<%= number_with_delimiter(current_government.official_user_priorities_count) %>)
+          </div>
+          <div class="tab_sublinks">
+          <%= link_to t('menu.priorities.official.agenda_endorsed'), obama_priorities_url %>
+          &middot; <%= link_to t('menu.priorities.official.agenda_not'), not_obama_priorities_url %>
+          &middot; <%= link_to t('menu.priorities.official.agenda_opposed'), obama_opposed_priorities_url %>          
+          </div>
+        <% end %>
+        
+      </div> -->
 		</li>
 		<% if logged_in? %>
 		<li class="tab3 mega">
@@ -316,6 +316,8 @@
 				<% end %>
 			</div>
 		</li>
+		<!--
+		<% if logged_in? %>
 		<li class="right">
 			<span class="tab_header">
 			  <% if facebook_session %>
@@ -325,11 +327,13 @@
 				<% end %>
 			</span>		  
 		</li>
-		<li class="tab7 mega right">
+		<% end %>
+		-->
+		<li class="tab7 mega">
 			<span class="tab_header">
 				<%= link_to t('menu.about.name'), :controller => "about" %>
 			</span>
-      <!--
+			<!--
 			<div class="tab_body">
 				<div class="tab_subhead"><%= link_to t('menu.about.site'), :controller => "about" %></div>
 				<div class="tab_sublinks">
@@ -363,21 +367,22 @@
 				
 				<%= blurb('about_menu_extra')%>
 			</div>
-			-->
 		</li>
-		<% if logged_in? and current_user.is_admin? %>
-		<li class="tab8 mega right">
-			<span class="tab_header">
-				<%= link_to t('menu.admin.name'), edit_government_url(current_government) %>
-			</span>		  
-		</li>
-	  <% end %>
+	  -->
+    <!-- <% if logged_in? and current_user.is_admin? %>
+    <li class="tab8 mega right">
+      <span class="tab_header">
+        <%= link_to t('menu.admin.name'), edit_government_url(current_government) %>
+      </span>     
+    </li>
+    <% end %> -->
+		<!--
 		<% if logged_in? %>
-		<li class="tab6 mega right">
+      <li class="tab6 mega right">
 			<span class="tab_header">
 				<%= link_to t('menu.settings.name'), settings_url %>
 			</span>
-      <!-- <div class="tab_body">
+      <div class="tab_body">
         <div class="tab_subhead">
           <%= link_to t('menu.settings.account'), settings_url %>
         </div>
@@ -438,9 +443,10 @@
         <% end %>
         </div>
 
-      </div> -->
+      </div>
 		</li>		
 		<% end %>
+	  -->
 	</ul>
 	
 	<% if current_government.has_fav_icon? %>
