@@ -56,7 +56,7 @@ class BulletinsController < ApplicationController
             page["new_comment"].reset
             page << "pageTracker._trackPageview('/goal/comment')" if current_government.has_google_analytics?
             if facebook_session
-              page << fb_user_action(UserPublisher.create_comment(facebook_session, @comment, @activity))
+              page << fb_connect_stream_publish(UserPublisher.create_comment(facebook_session, @comment, @activity))
             end            
           end        
         }        
