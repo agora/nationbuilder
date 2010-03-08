@@ -3,12 +3,13 @@
 jQuery.noConflict();
 
 jQuery(document).ready(function() {
-	var isChrome = /Chrome/.test(navigator.userAgent);
-	if(!isChrome & jQuery.support.opacity) {
-		jQuery(".tab_header a, div.tab_body").corners(); 
-	}
-	jQuery("#page, #toolbar, #top_right_column, #priority_column, #intro, #buzz_box, #content_text, #notification_show, .bulletin_form").corners();
-	
+  var isChrome = /Chrome/.test(navigator.userAgent);
+
+  corner_size = "5px";
+
+  jQuery("#page").corner("10px")
+  jQuery(".tab_header a, div.tab_body, #toolbar, #top_right_column, #priority_column, #intro, #buzz_box, #content_text, #notification_show, .bulletin_form").corner(corner_size);
+
 	jQuery("abbr[class*=timeago]").timeago();	
 	jQuery(":input[type=textarea]").textCounting({lengthExceededClass: 'count_over'});
 	jQuery("input#priority_name, input#change_new_priority_name, input#point_other_priority_name, input#revision_other_priority_name, input#right_priority_box").autocomplete("/priorities.js");

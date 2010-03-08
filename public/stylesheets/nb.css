@@ -118,7 +118,7 @@ h4 {
 	width: 125px;
 }
 #q_top {
-	width: 233px;
+	width: 188px;
 }
 #briefing_room_search {
 	width: 170px;
@@ -1346,12 +1346,18 @@ body {
   padding-left: 15px;
 }
 
-#header .info {
+#header .info,
+#header .login {
   float: left;
   width: 227px;
   padding: 26px 0 0 0;
   font-size: 8pt;
   text-align: right;
+}
+
+#header .login {
+  position: relative;
+  padding: 35px 0 0 0;
 }
 
 #header .info .name {
@@ -1523,13 +1529,13 @@ table.login .small {
 
 /* Login box */
 
-#container {
-    float: right;
+/*#container {
+    float: left;
     width:242px;
     position: relative;
     padding-top: 32px;
 }
-
+*/
 /*a:link, a:visited {
     color:#27b;
     text-decoration:none;
@@ -1605,7 +1611,7 @@ a.signin.menu-open span {
     border:1px transparent;
     text-align:left;
     padding:12px;
-    top: 40.5px; 
+    top: 44.5px; 
     right: 0px; 
     margin-top:5px;
     margin-right: 0px;

@@ -38,7 +38,7 @@
       </ul>
     </div>
   <% else %>
-    <div id="container">
+    <div class="login">
       <div id="topnav" class="topnav"> <%= link_to(t("sessions.new.signup"), signup_url) %> <a href="login" class="signin"><span><%= t("sessions.new.signin") %></span></a> </div>
       <fieldset id="signin_menu">
         <% form_for(:session, :url => session_path, :html => { :id => "signin" }) do |f| -%>

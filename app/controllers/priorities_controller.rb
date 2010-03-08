@@ -737,7 +737,7 @@ class PrioritiesController < ApplicationController
             page.select('#priority_' + @priority.id.to_s + "_button_small").each {|item| item.replace(render(:partial => "branch_priorities/button_small", :locals => {:priority => @priority, :branch_endorsement => be, :endorsement => @endorsement, :region => params[:region]}))}
           elsif params[:region] == 'ad_top' and @ad
             page.replace 'notification_show', render(:partial => "ads/pick")
-            page << 'jQuery("#notification_show").corners();'
+            page << 'jQuery("#notification_show").corner("5px");'
           end
           page.replace_html 'your_priorities_container', :partial => "priorities/yours"
           page.visual_effect :highlight, 'your_priorities'
