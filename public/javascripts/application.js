@@ -61,6 +61,7 @@ jQuery(document).ready(function() {
     jQuery(".signin").click(function(e) {
         e.preventDefault();
         jQuery("fieldset#signin_menu").toggle();
+        jQuery("#signin_menu #email").focus();
         jQuery(".signin").toggleClass("menu-open");
     });
 

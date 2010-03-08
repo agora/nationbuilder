@@ -95,7 +95,7 @@ is:
         documents:
             name: "Skjöl"
         inbox:
-            name: "Innboxið þitt"
+            name: "Skilaboðahólf"
             incoming: "Einkaskilaboð"
             sent: "Send boð"
             notifications: "Tilkynningar"

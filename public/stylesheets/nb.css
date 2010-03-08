@@ -1524,8 +1524,10 @@ table.login .small {
 /* Login box */
 
 #container {
-    width:220px;
+    float: right;
+    width:242px;
     position: relative;
+    padding-top: 32px;
 }
 
 /*a:link, a:visited {
@@ -1572,8 +1574,8 @@ a.signin span {
     padding:4px 16px 6px 0;
 }
 a.menu-open {
-    background:#ddeef6!important;
-    color:#666!important;
+    /*background:#ddeef6!important;
+        color:#666!important;*/
     outline:none;
 }
 #small_signup {
@@ -1584,8 +1586,8 @@ a.menu-open {
     width:170px;
 }
 a.signin.menu-open span {
-    background-image:url("/images/toggle_up_dark.png");
-    color:#789;
+    background-image:url("/images/toggle_up_light.png");
+/*    color:#789;*/
 }
 
 #signin_menu {
@@ -1595,7 +1597,7 @@ a.signin.menu-open span {
     -webkit-border-top-left-radius:5px;
     -webkit-border-bottom-left-radius:5px;
     -webkit-border-bottom-right-radius:5px;
-/*    display:none;*/
+    display:none;
     background-color:#ddeef6;
     position:absolute;
     width:210px;
@@ -1603,7 +1605,7 @@ a.signin.menu-open span {
     border:1px transparent;
     text-align:left;
     padding:12px;
-    top: 10.5px; 
+    top: 40.5px; 
     right: 0px; 
     margin-top:5px;
     margin-right: 0px;
@@ -1626,10 +1628,12 @@ a.signin.menu-open span {
     margin:0;
 }
 #signin_menu label {
+    display: block;
     font-weight:normal;
+    margin-bottom: 4px;
 }
 #signin_menu p.remember {
-    padding:10px 0;
+    padding:10px 0 0 0;
 }
 #signin_menu p.forgot, #signin_menu p.complete {
     clear:both;

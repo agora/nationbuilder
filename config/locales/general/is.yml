@@ -1534,6 +1534,8 @@ is:
                 label: "Netfang"
             password:
                 label: "Lykilorð"
+            signin: "Innskráning"
+            signup: "Nýskráning"
         create:
             success: "Velkomin/n aftur, {{user_name}}."
             failed: "Rangt netfang og/eða lykilorð."
