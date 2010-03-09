@@ -15,7 +15,7 @@
 
 <div id="header">
   <div class="logo">
-    <%= blurb("header") %>
+    <div id="blurb_header" class="blurb"><h1><%= link_to(image_tag(current_government.logo.url(:original), :border => 0), "/") %></h1></div>
   </div>
   <% if logged_in? %>
     <div class="info">

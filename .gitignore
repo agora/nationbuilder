@@ -4,6 +4,7 @@ log/*
 tmp/**/*
 tmp/restart.txt
 public/pictures/**/*
+public/system/*
 config/contacts.yml
 config/database.yml*
 config/facebooker.yml

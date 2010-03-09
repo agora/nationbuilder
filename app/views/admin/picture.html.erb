@@ -3,7 +3,7 @@
 </div>
 <p>	
 <% if current_government.has_logo? %>
-	<%= image_tag current_government.logo.url(:medium), :border => 0 %>
+	<%= image_tag current_government.logo.url(:original), :border => 0 %>
 <% end %>
 
 <% form_for(current_government, :url => {:action => "picture_save" }, :html => {:multipart => true}) do |f| %>
