@@ -1,34 +1,35 @@
-<table border="0" cellspacing="0" cellpadding="0">
-	<tr><td valign="top">
-		<%= blurb('signup_quick')%>
-		<p>
-		<%= render :partial => "users/form" %>
-	</td><td valign="top" style="padding-left: 40px; padding-right: 20px;">
-		<%= t('users.new.login')%>
-		<p>
-		<%= render :partial => "sessions/form" %>
-		<p>
-		<%= link_to t('sessions.new.forgot'), new_password_path %>
+<% form_for :session, :url => session_path do |f| -%>
 
-		<% if current_government.has_facebook_enabled? or current_government.has_twitter_enabled? %>
-			<p>
-			<%= t('sessions.new.login.options')%>
-			<p>
-
-			<% if current_government.has_facebook_enabled? %>
-			<a href="#" onclick="FB.Connect.requireSession(function(){window.location.href=window.location.href=window.location.href;}); return false;"><%= image_tag("facebook_signin.png", :border => 0)%></a>
-			<p>
-			<% end %>
-			<% if current_government.has_twitter_enabled? %>
-			<%= link_to image_tag("twitter_signin.png", :border => 0), :controller => "twitter", :action => "create" %>
-			<% end %>	
-
-		<% end %>
-
-
-	</td>
-	
-	</tr>
-	
+<table border="0" cellspacing="5" cellpadding="0" class="login">
+<tr>
+  <td class="header"><%= t('sessions.new.email.label')%></td>
+  <td class="input" colspan="2"><%= text_field_tag :email %></td>
+</tr>
+<tr>
+  <td class="header"><%= t('sessions.new.password.label')%></td>
+  <td class="input" colspan="2"><%= password_field_tag :password %></td>
+</tr>
+<tr>
+  <td></td>
+  <td><%= submit_tag t('sessions.new.submit'), :class => "yellow_button" %></td>
+  <td><%= link_to t('sessions.new.forgot'), new_password_path %></td>
+</tr>
 </table>
-<p>
+
+<% end -%>
+
+<% if current_government.has_facebook_enabled? or current_government.has_twitter_enabled? %>
+  <p>
+    <%= t('sessions.new.login.options')%>
+  </p>
+  <% if current_government.has_facebook_enabled? %>
+    <a href="#" onclick="FB.Connect.requireSession(function(){window.location.href=window.location.href=window.location.href;}); return false;"><%= image_tag("facebook_signin.png", :border => 0)%></a>
+  <% end %>
+  <% if current_government.has_twitter_enabled? %>
+    <%= link_to image_tag("twitter_signin.png", :border => 0), :controller => "twitter", :action => "create" %>
+  <% end %>
+<% end %>
+
+<script>
+  $("email").focus();
+</script>

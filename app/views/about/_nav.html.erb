@@ -1,0 +1,35 @@
+<% unless show_third %>
+
+<div id="nav_sub">
+	<div id="nav_sub_<% if ['index'].include?(params[:id]) %>1<% elsif ['faq'].include?(params[:id]) %>2<% elsif ['rules'].include?(params[:id]) %>3<% elsif ['privacy'].include?(params[:id]) %>4<% elsif ['priorities'].include?(params[:action]) %>5<% end %>">
+		<ul id="menu_sub">
+			<li class="tab1">
+				<span class="tab_header">
+					<%= link_to t('menu.about.name'), :controller => "about" %>
+				</span>
+			</li>
+			<li class="tab2">
+				<span class="tab_header">
+					<%= link_to t('menu.about.faq'), :controller => "about", :action => "faq" %>
+				</span>
+			</li>
+			<li class="tab3">
+				<span class="tab_header">
+					<%= link_to t('menu.about.rules'), :controller => "about", :action => "rules" %>
+				</span>
+			</li>			
+			<li class="tab4">
+				<span class="tab_header">
+					<%= link_to t('menu.about.privacy'), :controller => "about", :action => "privacy" %>
+				</span>
+			</li>
+			<li class="tab5">
+				<span class="tab_header">
+					<%= link_to t('menu.widgets.name'), :controller => "widgets", :action => "priorities" %>
+				</span>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<% end %>

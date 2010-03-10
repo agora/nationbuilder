@@ -1,4 +1,9 @@
 <div id="hp_intro"><%= @page_title %></div>
+
+<div id="third_menu_not_in_list">
+  <%= render :partial => "shared/menu", :locals => { :show_third => true } %>
+</div>
+
 <p><%= t('network.ambassadors.intro', :government_name => current_government.name) %>
 <% if logged_in? %>
 	<%= t('network.ambassadors.loggedin', :government_name => current_government.name, :currency_short_name => current_government.currency_short_name, :import_url => user_contacts_path(current_user))%>

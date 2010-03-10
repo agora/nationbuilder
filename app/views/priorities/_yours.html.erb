@@ -17,7 +17,7 @@
 						<%= link_to_remote "#{endorsement.position}.", { :url => edit_endorsement_url(endorsement, :region => "yours"), :method => :get }, :title => t('endorsements.position.title') %>
 						</div>
 					</td>
-					<td valign="top" width="220">
+					<td valign="top" width="180">
 					<div class="endorsement_<% if endorsement.is_up? %>up<% else %>down<% end %>">
 					<%= link_to_unless_current h(endorsement.priority.name), endorsement.priority %>
 					</div>

@@ -3,13 +3,13 @@
 jQuery.noConflict();
 
 jQuery(document).ready(function() {
-	var isChrome = /Chrome/.test(navigator.userAgent);
-	if(!isChrome & jQuery.support.opacity) {
-		jQuery(".tab_header a, div.tab_body").corners(); 
-	}
-	jQuery("#priority_column, #intro, #buzz_box, #content_text, #notification_show, .bulletin_form").corners();
-	jQuery("#top_right_column, #toolbar").corners("bottom");
-	
+  var isChrome = /Chrome/.test(navigator.userAgent);
+
+  corner_size = "5px";
+
+  jQuery("#page").corner("10px")
+  jQuery(".tab_header a, div.tab_body, #toolbar, #top_right_column, #priority_column, #intro, #buzz_box, #content_text, #notification_show, .bulletin_form").corner(corner_size);
+
 	jQuery("abbr[class*=timeago]").timeago();	
 	jQuery(":input[type=textarea]").textCounting({lengthExceededClass: 'count_over'});
 	jQuery("input#priority_name, input#change_new_priority_name, input#point_other_priority_name, input#revision_other_priority_name, input#right_priority_box").autocomplete("/priorities.js");
@@ -54,3 +54,26 @@ function setAll(name,state)
     if (!boxes[i].disabled)
    		{	boxes[i].checked = state ; }
 }
+
+// Login box
+
+jQuery(document).ready(function() {
+
+    jQuery(".signin").click(function(e) {
+        e.preventDefault();
+        jQuery("fieldset#signin_menu").toggle();
+        jQuery("#signin_menu #email").focus();
+        jQuery(".signin").toggleClass("menu-open");
+    });
+
+    jQuery("fieldset#signin_menu").mouseup(function() {
+        return false
+    });
+    jQuery(document).mouseup(function(e) {
+        if(jQuery(e.target).parent("a.signin").length==0) {
+            jQuery(".signin").removeClass("menu-open");
+            jQuery("fieldset#signin_menu").hide();
+        }
+    });            
+
+});

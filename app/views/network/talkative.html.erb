@@ -1,4 +1,9 @@
 <div id="hp_intro"><%= @page_title %></div>
+
+<div id="third_menu_not_in_list">
+  <%= render :partial => "shared/menu", :locals => { :show_third => true } %>
+</div>
+
 <p>
 <table border="0" cellspacing="0" cellpadding="0">
 	<% for user in @users %>

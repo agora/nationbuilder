@@ -1,6 +1,8 @@
 # This controller handles the login/logout function of the site.  
 class SessionsController < ApplicationController
 
+  layout "simple"
+
   def new
     @page_title = t('sessions.new.title', :government_name => current_government.name)
     @user = User.new

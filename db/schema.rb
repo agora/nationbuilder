@@ -439,8 +439,8 @@ ActiveRecord::Schema.define(:version => 20091014144207) do
   add_index "endorsements", ["value"], :name => "value"
 
   create_table "facebook_templates", :force => true do |t|
-    t.string "template_name", :null => false
-    t.string "content_hash",  :null => false
+    t.string "template_name", :default => "", :null => false
+    t.string "content_hash",  :default => "", :null => false
     t.string "bundle_id"
   end
 

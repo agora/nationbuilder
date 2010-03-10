@@ -3,7 +3,7 @@ module ApplicationHelper
 
   def time_ago(time, options = {})
     if request.xhr?
-      distance_of_time_in_words_to_now(time) + ' ago'
+      distance_of_time_in_words_to_now(time) + ' síðan'
     else
       options[:class] ||= "timeago"
       content_tag(:abbr, time.to_s, options.merge(:title => time.getutc.iso8601)) if time

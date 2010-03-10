@@ -6,7 +6,7 @@
 <% if ['color_schemes'].include?(params[:controller]) %>
 	<%= javascript_include_tag "colorpicker" %>
 <% end %>
-<%= javascript_include_tag "facebox","jquery.autocomplete.pack","jquery.textCounting.min", "jquery.timeago", "jquery.truncator","autoresize.jquery.min","jquery.defaultvalue","jquery.hoverIntent.minified","jquery.bgiframe.min","jquery.corners.min","application" %>
+<%= javascript_include_tag "facebox","jquery.autocomplete.pack","jquery.textCounting.min", "jquery.timeago", "jquery.truncator","autoresize.jquery.min","jquery.defaultvalue","jquery.hoverIntent.minified","jquery.bgiframe.min","jquery.corner","application" %>
 
 <script type="text/javascript">
 jQuery(document).ready(function() {
@@ -22,3 +22,5 @@ jQuery(document).ready(function() {
 	<%= render :partial => "shared/javascripts_reloadable" %>
 });
 </script>
+
+<%= javascript_include_tag "locales/timeago/jquery.timeago.is" if I18n.locale == "is" %>

@@ -1,4 +1,7 @@
-jQuery(".flash_notice, .flash_error").fadeIn("slow");
+jQuery(".flash_notice, .flash_error").fadeIn("slow", function() {
+  setTimeout(function(){jQuery(".flash_notice").fadeOut("slow")}, 3000);
+});
+
 jQuery(".flash_notice a.close_notify").click(function() {
     jQuery(".flash_notice").fadeOut("slow");
     return false;

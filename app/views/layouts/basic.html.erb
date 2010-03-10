@@ -11,83 +11,115 @@
 </head>
 <body>
 
-<%= blurb("header") %>
+<div id="page">
+
+<div id="header">
+  <div class="logo">
+    <div id="blurb_header" class="blurb"><h1><%= link_to(image_tag(current_government.logo.url(:original), :border => 0), "/") %></h1></div>
+  </div>
+  <% if logged_in? %>
+    <div class="info">
+      <div class="name"><%= @current_user.real_name %></div>
+      <ul class="menu">
+        <li><%= link_to t('menu.inbox.name'), :controller => "inbox" %></li>
+        <li><%= link_to t('menu.settings.name'), settings_url %></li>
+        <li>
+          <% if current_user.is_admin? %>
+    				<%= link_to t('menu.admin.name'), edit_government_url(current_government) %>
+      	  <% end %>
+      	</li>
+        <li>
+          <% if facebook_session %>
+  					<%= fb_logout_link t('menu.logout'), logout_path %>
+  				<% else %>
+  			  	<%= link_to t('menu.logout'), logout_path %>
+  				<% end %>
+        </li>
+      </ul>
+    </div>
+  <% else %>
+    <div class="login">
+      <div id="topnav" class="topnav"> <%= link_to(t("sessions.new.signup"), signup_url) %> <a href="login" class="signin"><span><%= t("sessions.new.signin") %></span></a> </div>
+      <fieldset id="signin_menu">
+        <% form_for(:session, :url => session_path, :html => { :id => "signin" }) do |f| -%>
+          <label for="username"><%= t("sessions.new.email.label") %></label>
+          <%= text_field_tag :email %>
+          </p>
+          <p>
+            <label for="password"><%= t("sessions.new.password.label") %></label>
+            <%= password_field_tag :password %>
+          </p>
+          <p class="remember">
+            <input id="signin_submit" value="<%= t("sessions.new.submit") %>" tabindex="6" type="submit">
+            <%= link_to(t('sessions.new.forgot'), new_password_path, :id => "resend_password_link") %>
+          </p>
+        <% end %>
+      </fieldset>
+    </div>
+  <% end %>
+</div>
 
 <div id="backgroundwrap" align="center">
+  <div id="contentwrap">
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+      <td colspan="2">
+        <%= flash_div :warning, :notice, :error %>
+        <%= render :partial => "shared/menu", :locals => { :show_third => false } %>
+        <%= render :partial => "ads/pick" %>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="left">
+        <div id="content_text">
+          <%= yield :layout %>
+        </div>
+      </td>
+      <td valign="top" align="left" width="234" style="padding-left: 10px;padding-top: 15px;">
+        <% if logged_in? and current_user.warnings_count > 0 %>
+          <div id="warning"><%= t('warnings.name', :count => current_user.warnings_count) %></div>
+        <% end %>	
+        <div id="top_right_column">
+          <% if current_government.is_searchable? %>
+            <%= render :partial => "shared/search" %>
+          <% end %>
+          <% if logged_in? %>
+            <%= render :partial => "shared/notifications" %>
+          <% else %>
+            <%#= render :partial => "shared/login" %>
+          <% end %>
+        </div>
+        <% if logged_in? %>
+          <div id="priority_column">
+            <%= render :partial => "shared/your_priorities" %>
+          </div>
+          <%= render :partial => "shared/activated" %>
+        <% else %>
+        <div id="intro"><%= blurb("intro") %></div>
+        <% if current_government.short_name == 'wh2' %>
+          <%= render :partial => "shared/buzz" %>
+        <% end %>
+      <% end %>
+      <% if current_partner %>
+        <div id="partner_image">
+          Partnership with:<br/>
+          <%= render :partial => "partners/logo" %>
+        </div>
+      <% end %>
+      </div>
 
-<div id="contentwrap">
-
-<table cellpadding="0" cellspacing="0" border="0" width="100%">
-
-<tr>
-<td valign="top" align="left">
-	
-	<%= flash_div :warning, :notice, :error %>
-
-	<%= render :partial => "shared/menu" %>
-
-	<%= render :partial => "ads/pick" %>
-			
-	<div id="content_text">
-		<%= yield :layout %>
-	</div>
-
-</td><td valign="top" align="left" width="284" style="padding-left: 10px;">
-	
-	<% if logged_in? and current_user.warnings_count > 0 %>
-		<div id="warning"><%= t('warnings.name', :count => current_user.warnings_count) %></div>
-	<% end %>	
-	
-	<div id="top_right_column">
-		
-		<% if current_government.is_searchable? %>
-			<%= render :partial => "shared/search" %>
-		<% end %>
-		
-		<% if logged_in? %>
-			<%= render :partial => "shared/notifications" %>
-		<% else %>
-			<%= render :partial => "shared/login" %>
-		<% end %>
-		
-	</div>
-	
-	<% if logged_in? %>
-		
-		<div id="priority_column">
-		<%= render :partial => "shared/your_priorities" %>
-		</div>
-		
-		<%= render :partial => "shared/activated" %>
-		
-	<% else %>
-
-		<div id="intro"><%= blurb("intro") %></div>
-		<% if current_government.short_name == 'wh2' %>
-			<%= render :partial => "shared/buzz" %>
-		<% end %>
-		
-	<% end %>
-	
-	<% if current_partner %>
-		<div id="partner_image">
-			Partnership with:<br/>
-			<%= render :partial => "partners/logo" %>
-		</div>
-	<% end %>
-	
-	</div>
-
-	</td>
-	</tr>
-</table>
-</div>
-<div class="push"></div>
+      </td>
+    </tr>
+    </table>
+  </div>
+  <div class="push"></div>
 </div>
 
 <%= render :partial => "shared/footer" %>
 <%= render :partial => "shared/analytics" %>
 <%= render :partial => "shared/facebook_footer" %>
+
+</div>
 
 </body>
 </html>

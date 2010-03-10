@@ -2,7 +2,6 @@
 #
 # If you change the host or port number here, make sure you update 
 # them in your Solr config file
- 
 development:
   url: http://127.0.0.1:8982/solr
   
@@ -12,3 +11,4 @@ production:
  
 test:
   url: http://127.0.0.1:8981/solr
+
