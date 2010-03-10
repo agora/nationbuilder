@@ -1,6 +1,5 @@
 # Settings specified here will take precedence over those in config/environment.rb
 
-DB_CONFIG = YAML.load_file("#{RAILS_ROOT}/config/database.yml")
 domain = DB_CONFIG['production']['domain']
 ENV['DOMAIN'] = domain
 

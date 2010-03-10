@@ -10,6 +10,7 @@ require 'capistrano/ext/multistage'
 set(:rails_env) { stage }
 set :application, "ccp_agora"
 set(:deploy_to) { "/u/apps/#{application}" } # Default: /u/apps/
+set :default_lang "en"
 
 # Repo
 set :scm, :git
@@ -80,6 +81,7 @@ namespace :db do
         - domain: ccpgames.com
         - domain: agora.is
       website_locked: true
+      default_lang: #{default_lang}
 
     development:
       database: #{application}_dev

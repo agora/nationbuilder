@@ -10,6 +10,8 @@ RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
+DB_CONFIG = YAML.load_file("#{RAILS_ROOT}/config/database.yml")
+
 Rails::Initializer.run do |config|
   
   require 'core_extensions'
@@ -66,7 +68,7 @@ Rails::Initializer.run do |config|
   # config.active_record.default_timezone = :utc
 
   config.i18n.load_path += Dir[File.join(RAILS_ROOT, 'config', 'locales', '**', '*.{rb,yml}')] 
-  config.i18n.default_locale = "is"
+  config.i18n.default_locale = DB_CONFIG[RAILS_ENV]['default_lang']
   
   NB_CONFIG = { 'api_exclude_fields' => [:ip_address, :user_agent, :referrer, :google_token, :google_crawled_at, :activation_code, :salt, :email, :first_name, :last_name, :crypted_password, :is_tagger, :partner_id, :ip_address, :user_agent, :remember_token, :remember_token_expires_at, :referrer, :zip, :birth_date, :city, :state, :is_comments_subscribed, :is_finished_subscribed, :is_followers_subscribed, :is_mergeable, :is_messages_subscribed, :is_newsletter_subscribed, :is_point_changes_subscribed, :is_votes_subscribed, :is_subscribed, :contacts_count, :contacts_invited_count, :contacts_members_count, :contacts_not_invited_count, :code, :rss_code, :address] }
 

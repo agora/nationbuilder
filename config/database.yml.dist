@@ -26,6 +26,7 @@ development:
     - domain: agora1.is
     - domain: agora2.is
   website_locked: true # Does the user need to be logged in to use the website?
+  default_lang: is
   
 # Warning: The database defined as 'test' will be erased and
 # re-generated from your development database when you run 'rake'.
@@ -62,3 +63,4 @@ production:
     - domain: agora1.is
     - domain: agora2.is
   website_locked: true # Does the user need to be logged in to use the website?  
+  default_lang: is  

@@ -16,7 +16,6 @@ config.action_controller.perform_caching             = false
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = false
 
-DB_CONFIG = YAML.load_file("#{RAILS_ROOT}/config/database.yml")
 ENV['DOMAIN'] = DB_CONFIG[RAILS_ENV]['domain']
 if ENV['DOMAIN']
   config.action_controller.session = {:domain => '.' + ENV['DOMAIN']}
