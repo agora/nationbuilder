@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
 
   # before_filter Proc.new { I18n.reload! } # FFJ: HACK to be able to edit locale yml files on the fly in production mode
   
-  # Login required if the website is locked - using http://github.com/chendo/priority_filter
+  # Login required if the website is locked
   before_filter :lock, :if => [:website_locked?]
   
   # switch to the right database for this government

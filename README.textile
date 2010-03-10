@@ -52,3 +52,52 @@ h1. þýða default email tempaltes
 
 views/email_templates/defaults
 <pre><pre><code>
+  
+  
+h1. LINKS
+
+h2. Chef
+
+http://github.com/opscode/chef
+http://wiki.opscode.com/display/chef/
+http://cloudscaling.com/blog/technology/engineyard-uses-chef-a-puppet-alternative
+http://brainspl.at/articles/2009/01/15/chef-suck-on-my-chocolate-salty-balls
+http://www.slideshare.net/jesserobbins/using-chef-for-automated-infrastructure-in-the-cloud
+http://37signals.com/svn/posts/1872-nuts-bolts-configuration-management-with-chef
+http://github.com/hpoydar/chef-ey-ree
+
+h3. Cookbooks
+
+http://github.com/37signals/37s_cookbooks
+http://github.com/ThePixelDeveloper/cookbooks/tree/e373b82f0dcda2ce72c3162a5a4d3d3a22400b85/ruby-enterprise-edition
+https://gist.github.com/0a61461b45f532c07311
+http://github.com/seancribbs/cookbooks/tree/COOK-107
+http://gist.github.com/144151
+
+h2. Moonshine
+
+http://github.com/railsmachine/moonshine
+http://blog.railsmachine.com/articles/2009/01/16/moonshine-configuration-management-and-deployment/
+
+http://jarinheit.com/a-talk-i-gave-at-sd-ruby-deploying-rails-apps
+- http://www.vimeo.com/9422629
+- http://www.slideshare.net/jarinudom/deploying-rails-applications-with-moonshine
+
+h2. Puppet
+
+http://reductivelabs.com/products/puppet/
+http://urgetopunt.org/puppet/2010/02/28/running-puppet-with-ree.html
+
+h2. Deprec
+
+http://deprec.failmode.com/documentation/initial-server-setup/
+http://github.com/mbailey/deprec/blob/master/GETTING_STARTED
+http://groups.google.com/group/deprec-users/browse_thread/thread/7452ab8130f68fae
+http://groups.google.com/group/deprec-users/browse_thread/thread/7f19bec758f13e97
+http://blog.kevinmtrowbridge.com/?p=115
+http://toolmantim.com/thoughts/automating_new_user_creation_on_new_slices
+
+h2. Hosting
+
+http://www.blueboxgrp.com/
+http://www.railsmachine.com/
