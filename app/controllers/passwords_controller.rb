@@ -1,6 +1,6 @@
 class PasswordsController < ApplicationController
 
-  layout "simple", :only => [:new, :create, :edit]
+  layout "simple" #, :only => [:new, :create, :edit]
 
   before_filter :login_from_cookie
   before_filter :login_required, :except => [:create, :new]
