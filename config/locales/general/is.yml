@@ -1522,7 +1522,7 @@ is:
     sessions:
         new:
             title: "Vinsamlegast skráðu þig inn"
-            submit: "Skráðu þig inn"
+            submit: "Skrá inn"
             login:
                 or: "eða"
                 twitter: "Twitter"

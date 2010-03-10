@@ -12,7 +12,12 @@
 <tr>
   <td></td>
   <td><%= submit_tag t('sessions.new.submit'), :class => "yellow_button" %></td>
-  <td><%= link_to t('sessions.new.forgot'), new_password_path %></td>
+  <td>
+    <%= link_to t('sessions.new.forgot'), new_password_path %>
+    <% unless DB_CONFIG[RAILS_ENV]['signup_locked'] %>
+    | <%= link_to t('sessions.new.signup'), signup_path %>
+    <% end %>
+  </td>
 </tr>
 </table>
 

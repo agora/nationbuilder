@@ -212,7 +212,7 @@ class ApplicationController < ActionController::Base
   end
   
   def lock
-    login_required unless logged_in? or ['sessions', 'install'].include?(params[:controller])
+    login_required unless logged_in? or ['sessions', 'install', 'users'].include?(params[:controller])
   end
   
   def bad_token
