@@ -120,7 +120,7 @@ after "deploy:update_code", "solr:symlink"
 namespace :solr do
   desc "Setup Solr"
   task :setup do
-    put "config/solr.yml", "#{shared_path}/config/solr.yml"
+    put File.read("config/solr.yml"), "#{shared_path}/config/solr.yml"
   end
 
   desc "Make symlink for solr yaml" 

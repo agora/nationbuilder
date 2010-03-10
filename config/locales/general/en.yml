@@ -1530,11 +1530,13 @@ en:
                 facebook: "Facebook"
                 options: "or <b>sign in instantly</b> with:"
             intro: "<b><a href='{{signup_url}}'>Sign up</a></b> or <a href='#' id='login_link'>Sign in with {{government_name}}</a>."
-            forgot: "I forgot my password"
+            forgot: "Forgot password"
             email:
                 label: "Email address"
             password:
                 label: "Password"
+            signin: "Sign in"
+            signup: "Sign up"
         create:
             success: "Welcome back, {{user_name}}."
             failed: "You were NOT signed in, please check your name and password, or click on the 'I forgot my password' to get a new password."  
