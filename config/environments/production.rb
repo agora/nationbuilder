@@ -1,13 +1,13 @@
 # Settings specified here will take precedence over those in config/environment.rb
 
 DB_CONFIG = YAML.load_file("#{RAILS_ROOT}/config/database.yml")
-domain = DB_CONFIG['production']['DOMAIN']
+domain = DB_CONFIG['production']['domain']
 
 # The production environment is meant for finished, "live" apps.
 # Code is not reloaded between requests
 config.cache_classes = true
 
-config.cache_store = :mem_cache_store, 'localhost:11211', { :namespace => DB_CONFIG['production']['MEMCACHE_NAMESPACE']}
+config.cache_store = :mem_cache_store, 'localhost:11211', { :namespace => DB_CONFIG['production']['memcache_namespace']}
 
 # Use a different logger for distributed setups
 # config.logger = SyslogLogger.new

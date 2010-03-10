@@ -36,7 +36,7 @@ namespace :deploy do
   task :stop do ; end
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-    top.deprec.app.restart    
+    # top.deprec.app.restart # Deprec
     # run "#{try_sudo} kill $( passenger-memory-stats | grep 'Passenger spawn server' | awk '{ print $1 }' )" # Kill old spawn servers, Needs root access (optional, will die automatically after default timeout period)
   end
 end
