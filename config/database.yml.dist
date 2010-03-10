@@ -18,7 +18,15 @@ development:
   twitter_key:
   twitter_secret_key:
   hoptoad_key:
-
+  signup_locked: false # Then /signup uses basic auth
+  signup_user: agora
+  signup_password: agora123
+  signup_domain_locked: true # Should only the following domains be allowed to sign up?
+  signup_domains:
+    - domain: agora1.is
+    - domain: agora2.is
+  website_locked: true # Does the user need to be logged in to use the website?
+  
 # Warning: The database defined as 'test' will be erased and
 # re-generated from your development database when you run 'rake'.
 # Do not set this db to the same as development or production.
@@ -46,3 +54,11 @@ production:
   facebook_api_key:
   facebook_secret_key:
   hoptoad_key:
+  signup_locked: false # Then /signup uses basic auth
+  signup_user: agora
+  signup_password: agora123
+  signup_domain_locked: true # Should only the following domains be allowed to sign up?
+  signup_domains:
+    - domain: agora1.is
+    - domain: agora2.is
+  website_locked: true # Does the user need to be logged in to use the website?  
