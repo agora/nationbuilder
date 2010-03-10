@@ -10,7 +10,7 @@ require 'capistrano/ext/multistage'
 set(:rails_env) { stage }
 set :application, "ccp_agora"
 set(:deploy_to) { "/u/apps/#{application}" } # Default: /u/apps/
-set :default_lang "en"
+set :default_lang, "en"
 
 # Repo
 set :scm, :git
