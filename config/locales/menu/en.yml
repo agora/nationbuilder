@@ -8,7 +8,7 @@ en:
             rules: "Rules"
             privacy: "Privacy policy"
         admin:
-            name: "Nation settings"
+            name: "Admin"
             government:
                 name: "Settings"
                 edit: "Nation info"

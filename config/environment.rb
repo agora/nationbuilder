@@ -11,6 +11,17 @@ RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 
 DB_CONFIG = YAML.load_file("#{RAILS_ROOT}/config/database.yml")
+if File.exists?(RAILS_ROOT+'/config/solr.yml')
+  config = YAML::load_file(RAILS_ROOT+'/config/solr.yml')
+  url = config[RAILS_ENV]['url']
+  # for backwards compatibility
+  url ||= "http://#{config[RAILS_ENV]['host']}:#{config[RAILS_ENV]['port']}/#{config[RAILS_ENV]['servlet_path']}"
+elsif ENV['WEBSOLR_URL']
+  url = ENV['WEBSOLR_URL']
+else
+  url = 'http://localhost:8983/solr'
+end
+ENV['WEBSOLR_URL'] = url
 
 Rails::Initializer.run do |config|
   
