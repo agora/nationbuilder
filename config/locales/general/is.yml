@@ -732,7 +732,7 @@ is:
             facebook: "Bjóða Facebook vinum"
     install:
         new:
-            heading: "Velkomin/n í Hugmyndaráðuneytið!"
+            heading: "Velkomin(n) í Agora!"
         admin_user:
             heading: "Búðu til stjórnanda aðgang"
             submit: "Vistaðu aðgangsupplýsingarnar þínar"
@@ -773,7 +773,7 @@ is:
             loggedin: "Þú getur líka orðið sendiherra og unnið þér inn <span class='pc'>5{{currency_short_name}}</span> fyrir hver einstakling sem þú nælir í. Byrjaðu með því einfaldlega að <a href='{{import_url}}'>flytja inn Google, Yahoo, Windows Live eða Facebook tengiliði þína</a>."
         twitterers: 
             title: "Tístarar (Twitterers) hjá {{government_name}}"
-            intro: "Ef þú vilt láta bæta þér við, smelltu þá á þennan hnapp og fylgdu Twitter upplýsingunum til að samþykkja {{government_name}}/Hugmyndaráðuneytið."
+            intro: "Ef þú vilt láta bæta þér við, smelltu þá á þennan hnapp og fylgdu Twitter upplýsingunum til að samþykkja {{government_name}}/Agora."
         newest: 
             title: "Nýjir meðlimir hjá {{government_name}}"
         partners: 

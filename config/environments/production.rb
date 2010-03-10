@@ -2,6 +2,7 @@
 
 DB_CONFIG = YAML.load_file("#{RAILS_ROOT}/config/database.yml")
 domain = DB_CONFIG['production']['domain']
+ENV['DOMAIN'] = domain
 
 # The production environment is meant for finished, "live" apps.
 # Code is not reloaded between requests
