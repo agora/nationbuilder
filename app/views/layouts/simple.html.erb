@@ -15,7 +15,7 @@
   <div id="backgroundwrap" align="center">
     <div id="contentwrap">
       <div id="content_text">
-        <div style="text-align:center"><%= blurb("header") %></div>
+        <div style="text-align:center"><div id="blurb_header" class="blurb"><h1><%= link_to(image_tag(current_government.logo.url(:original), :border => 0), "/") %></h1></div></div>
         <%= flash_div :warning, :notice, :error %>
         <%= yield %>
       </div>
