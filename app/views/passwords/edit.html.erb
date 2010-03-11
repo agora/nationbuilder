@@ -10,8 +10,9 @@
 <p><label for="password"><%= t('passwords.new.new.label')%></label><br/>
 <%= f.password_field :password %></p>
 
-<p><label for="password_confirmation"><%= t('passwords.new.confirm.label')%></label><br/>
-<%= f.password_field :password_confirmation %></p>
+<%# FIXME: Cannot confirm, doesn't validate because of should_validate_password? in user.rb %>
+<!-- <p><label for="password_confirmation"><%= t('passwords.new.confirm.label')%></label><br/>
+<%#= f.password_field :password_confirmation %></p> -->
 
 <p><%= f.submit t('passwords.change.submit'), :class => "yellow_button" %></p>
 <% end %>

@@ -930,7 +930,7 @@ en:
                 label: "URL where people can <i>un</i>subscribe"
     passwords:
         new:
-            title: "Reset your {{government_name}} password"
+            title: "Reset your password"
             facebook: "Your password is handled on Facebook, not at {{government_name}}.  Click the Facebook button to sign in."
             sent: "Sent a new temporary password to {{email}}"
             email: 
@@ -944,7 +944,7 @@ en:
             submit: "Request a new password"
             nevermind: "Never mind, I remember it now"
         change:
-            title: "Change your {{government_name}} password"
+            title: "Change your password"
             facebook: "Your password is the same as your Facebook password, so you must change it on Facebook."
             success: "Password changed"
             nomatch: "Password confirmation did not match"

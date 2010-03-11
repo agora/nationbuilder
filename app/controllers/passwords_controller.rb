@@ -69,7 +69,7 @@ class PasswordsController < ApplicationController
     respond_to do |format|
       if @user.authenticated?(old_password) && @user.save
         flash[:notice] = t('passwords.change.success')
-        format.html { redirect_to redirect_back_or_default('/') }
+        format.html { redirect_to(settings_path) }
       else
         flash[:error] = t('passwords.change.nomatch')
         format.html { render :action => 'edit' }

@@ -95,7 +95,7 @@ en:
         documents:
             name: "Documents"
         inbox:
-            name: "Your inbox"
+            name: "Inbox"
             incoming: "Private messages"
             sent: "Sent messages"
             notifications: "Notifications"
