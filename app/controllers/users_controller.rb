@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+  layout "basic", :except => [:new]
   layout "simple", :only => [:new]
 
   before_filter :login_required, :only => [:resend_activation, :follow, :unfollow, :endorse]
