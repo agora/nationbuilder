@@ -44,17 +44,17 @@ end
 # before "deploy:setup", "solr:setup"
 # after "deploy:update_code", "solr:symlink"
 
-namespace :solr do
-  desc "Setup Solr"
-  task :setup do
-    put File.read("config/solr.yml"), "#{shared_path}/config/solr.yml"
-  end
-
-  desc "Make symlink for solr yaml" 
-  task :symlink do
-    run "ln -nfs #{shared_path}/config/solr.yml #{release_path}/config/solr.yml" 
-  end  
-end
+# namespace :solr do
+#   desc "Setup Solr"
+#   task :setup do
+#     put File.read("config/solr.yml"), "#{shared_path}/config/solr.yml"
+#   end
+# 
+#   desc "Make symlink for solr yaml" 
+#   task :symlink do
+#     run "ln -nfs #{shared_path}/config/solr.yml #{release_path}/config/solr.yml" 
+#   end  
+# end
 ## END SOLR
 
 # Configure Nginx, create vhost file

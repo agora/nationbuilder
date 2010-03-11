@@ -73,3 +73,37 @@ namespace :db do
   end
 end
 ## END DB
+
+before "deploy:setup", :solr
+after "deploy:update_code", "solr:symlink"
+
+# ATH d64 vs. d32 eftir kerfi
+namespace :solr do
+  desc "Create solr yaml in shared path" 
+  task :default do
+    solr_config = ERB.new <<-EOF
+    # Config file for the acts_as_solr plugin.
+    #
+    # If you change the host or port number here, make sure you update 
+    # them in your Solr config file
+    development:
+      url: http://127.0.0.1:8982/solr
+  
+    production:
+      url: http://127.0.0.1:8983/solr
+      jvm_options: -server -d64 -Xmx1024M -Xms64M
+ 
+    test:
+      url: http://127.0.0.1:8981/solr
+    EOF
+    
+    run "mkdir -p #{shared_path}/config" 
+    put solr_config.result, "#{shared_path}/config/solr.yml"
+  end
+  
+  desc "Make symlink for solr yaml" 
+  task :symlink do
+    run "ln -nfs #{shared_path}/config/solr.yml #{release_path}/config/solr.yml" 
+  end
+  
+end

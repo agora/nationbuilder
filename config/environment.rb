@@ -28,7 +28,7 @@ Rails::Initializer.run do |config|
   require 'core_extensions'
   config.gem 'paperclip'
   config.gem 'sunlight', :version => '>= 0.9'  
-  config.gem "RedCloth", :version => ">= 3.0.4", :source => "http://code.whytheluckystiff.net/"
+  config.gem "RedCloth", :version => ">= 3.0.4" #, :source => "http://code.whytheluckystiff.net/"
   config.gem 'googlecharts', :version => '1.3.6', :lib => 'gchart'
   config.gem 'oauth', :version => '>= 0.3.1'
   config.gem 'twitter-auth', :version => '0.1.21', :lib => 'twitter_auth'
