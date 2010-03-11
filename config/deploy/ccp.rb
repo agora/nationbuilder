@@ -1,10 +1,13 @@
 # App
 set(:rails_env) { stage }
-set :application, "ccp_agora"
-set(:deploy_to) { "/u/apps/#{application}" } # Default: /u/apps/
+set :customer, "ccp"
+set(:deploy_to) { "/u/apps/#{customer}_#{application}" } # Default: /u/apps/
 set :default_lang, "en"
 
 set :domain, "hq.agora.is"
+role :web, domain # Web server
+role :app, domain # App server
+role :db,  domain, :primary => true
 
 ## BEGIN DB
 # http://shanesbrain.net/2007/5/30/managing-database-yml-with-capistrano-2-0

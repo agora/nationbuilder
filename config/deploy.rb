@@ -6,6 +6,8 @@ set :stages, %w(none ccp tal)
 set :default_stage, "none"
 require 'capistrano/ext/multistage'
 
+set :application, "agora"
+
 # Repo
 set :scm, :git
 set :deploy_via, :remote_cache
@@ -14,9 +16,6 @@ set :branch, "vb"
 
 # Servers
 set :user, "deploy"
-role :web, domain # Web server
-role :app, domain # App server
-role :db,  domain, :primary => true
 
 # Deprec
 # set :ruby_vm_type,      :ree        # ree, mri
@@ -42,8 +41,8 @@ end
 # set :migrate_target, :latest
 
 ## SOLR
-before "deploy:setup", "solr:setup"
-after "deploy:update_code", "solr:symlink"
+# before "deploy:setup", "solr:setup"
+# after "deploy:update_code", "solr:symlink"
 
 namespace :solr do
   desc "Setup Solr"
