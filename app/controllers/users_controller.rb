@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
 
-  layout "basic", :except => [:new]
-  layout "simple", :only => [:new]
+  layout :set_layout
 
   before_filter :login_required, :only => [:resend_activation, :follow, :unfollow, :endorse]
   before_filter :current_user_required, :only => [:resend_activation]
@@ -535,6 +534,10 @@ class UsersController < ApplicationController
       authenticate_or_request_with_http_basic do |id, password| 
         id == USER_ID && password == PASSWORD
       end if DB_CONFIG[RAILS_ENV]['signup_locked']
+    end
+
+    def set_layout
+      params[:action] == 'new' ? 'simple' : "basic"
     end
   
 end
