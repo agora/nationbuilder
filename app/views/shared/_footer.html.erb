@@ -1,5 +1,18 @@
 <div id="footer_container" align="center">
   <div id="footer">
-    <%= blurb("footer") %></td>
+    <%#= blurb("footer") %>
+    <div id="blurb_footer" class="blurb">
+      <strong><%= current_government.name %></strong>
+      &nbsp;&nbsp;
+      <a href="/signup"><%= t("sessions.new.signup") %></a>
+      &nbsp;&nbsp;
+      <a href="/about"><%= t("menu.about.name", :government_name => "") %></a></a>
+      &nbsp;&nbsp;
+      <a href="/about/rules"><%= t("menu.about.rules", :government_name => "") %></a>
+      &nbsp;&nbsp;
+      <a href="/about/privacy"><%= t("menu.about.privacy", :government_name => "") %></a>
+      &nbsp;&nbsp;
+      <%= t("powered_by") %>
+    </div>
   </div>
 </div>
