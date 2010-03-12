@@ -29,6 +29,7 @@ namespace :deploy do
   task :stop do ; end
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+    run "RAILS_ENV=production script/delayed_job start"
     # top.deprec.app.restart # Deprec
     # run "#{try_sudo} kill $( passenger-memory-stats | grep 'Passenger spawn server' | awk '{ print $1 }' )" # Kill old spawn servers, Needs root access (optional, will die automatically after default timeout period)
   end
@@ -96,3 +97,26 @@ def RunTemplate(remote_file_to_get,remote_file_to_put)
     buffer= ERB.new(template).result(binding)   # parse it
     put buffer,remote_file_to_put               # put the result
 end 
+
+# For delayed_job
+# http://www.magnionlabs.com/2009/2/28/background-job-processing-in-rails-with-delayed_job
+namespace :delayed_job do
+  desc "Start delayed_job process" 
+  task :start, :roles => :app do
+    run "cd #{current_path}; script/delayed_job start #{rails_env}" 
+  end
+
+  desc "Stop delayed_job process" 
+  task :stop, :roles => :app do
+    run "cd #{current_path}; script/delayed_job stop #{rails_env}" 
+  end
+
+  desc "Restart delayed_job process" 
+  task :restart, :roles => :app do
+    run "cd #{current_path}; script/delayed_job restart #{rails_env}" 
+  end
+end
+
+after "deploy:start", "delayed_job:start" 
+after "deploy:stop", "delayed_job:stop" 
+after "deploy:restart", "delayed_job:restart"

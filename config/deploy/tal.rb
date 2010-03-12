@@ -4,7 +4,7 @@ set :customer, "tal"
 set(:deploy_to) { "/u/apps/#{customer}_#{application}" } # Default: /u/apps/
 set :default_lang, "is"
 
-set :domain, "a2.agora.is"
+set :domain, "a3.agora.is"
 role :web, domain # Web server
 role :app, domain # App server
 role :db,  domain, :primary => true
@@ -91,7 +91,7 @@ namespace :solr do
   
     production:
       url: http://127.0.0.1:8983/solr
-      jvm_options: -server -d64 -Xmx1024M -Xms64M
+      jvm_options: -server -d32 -Xmx1024M -Xms64M
  
     test:
       url: http://127.0.0.1:8981/solr
