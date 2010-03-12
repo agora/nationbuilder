@@ -29,7 +29,6 @@ namespace :deploy do
   task :stop do ; end
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-    run "RAILS_ENV=production script/delayed_job start"
     # top.deprec.app.restart # Deprec
     # run "#{try_sudo} kill $( passenger-memory-stats | grep 'Passenger spawn server' | awk '{ print $1 }' )" # Kill old spawn servers, Needs root access (optional, will die automatically after default timeout period)
   end
@@ -103,17 +102,17 @@ end
 namespace :delayed_job do
   desc "Start delayed_job process" 
   task :start, :roles => :app do
-    run "cd #{current_path}; script/delayed_job start #{rails_env}" 
+    run "#{current_path}/script/delayed_job start #{rails_env}" 
   end
 
   desc "Stop delayed_job process" 
   task :stop, :roles => :app do
-    run "cd #{current_path}; script/delayed_job stop #{rails_env}" 
+    run "#{current_path}/script/delayed_job stop #{rails_env}" 
   end
 
   desc "Restart delayed_job process" 
   task :restart, :roles => :app do
-    run "cd #{current_path}; script/delayed_job restart #{rails_env}" 
+    run "#{current_path}/script/delayed_job restart #{rails_env}" 
   end
 end
 
