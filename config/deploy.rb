@@ -96,3 +96,26 @@ def RunTemplate(remote_file_to_get,remote_file_to_put)
     buffer= ERB.new(template).result(binding)   # parse it
     put buffer,remote_file_to_put               # put the result
 end 
+
+# For delayed_job
+# http://www.magnionlabs.com/2009/2/28/background-job-processing-in-rails-with-delayed_job
+namespace :delayed_job do
+  desc "Start delayed_job process" 
+  task :start, :roles => :app do
+    run "#{current_path}/script/delayed_job start #{rails_env}" 
+  end
+
+  desc "Stop delayed_job process" 
+  task :stop, :roles => :app do
+    run "#{current_path}/script/delayed_job stop #{rails_env}" 
+  end
+
+  desc "Restart delayed_job process" 
+  task :restart, :roles => :app do
+    run "#{current_path}/script/delayed_job restart #{rails_env}" 
+  end
+end
+
+after "deploy:start", "delayed_job:start" 
+after "deploy:stop", "delayed_job:stop" 
+after "deploy:restart", "delayed_job:restart"

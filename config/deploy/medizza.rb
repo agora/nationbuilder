@@ -1,10 +1,10 @@
 # App
 set(:rails_env) { stage }
-set :customer, "tal"
+set :customer, "medizza"
 set(:deploy_to) { "/u/apps/#{customer}_#{application}" } # Default: /u/apps/
 set :default_lang, "is"
 
-set :domain, "a3.agora.is"
+set :domain, "a4.agora.is"
 role :web, domain # Web server
 role :app, domain # App server
 role :db,  domain, :primary => true
@@ -39,26 +39,26 @@ namespace :db do
       signup_password: agora123
       signup_domain_locked: true
       signup_domains:      
-        - domain: tal.is
+        - domain: medizza.com
         - domain: agora.is
       website_locked: true
       default_lang: #{default_lang}
 
     development:
-      database: #{application}_dev
-      memcached_namespace: #{application}_dev
+      database: #{application}_agora_dev
+      memcached_namespace: #{application}_agora_dev
       domain:
       <<: *base
 
     test:
-      database: #{application}_test
-      memcached_namespace: #{application}_test
+      database: #{application}_agora_test
+      memcached_namespace: #{application}_agora_test
       domain:
       <<: *base
 
     production:
-      database: #{application}_prod
-      memcached_namespace: #{application}_prod      
+      database: #{application}_agora_prod
+      memcached_namespace: #{application}_agora_prod      
       domain: tal.agora.is
       <<: *base
     EOF
