@@ -4,7 +4,7 @@ ActionController::Routing::Routes.draw do |map|
     :picture => :get,
     :picture_save => :post
   }
-  map.resources :users, :has_one => [:password, :profile], :collection => {:endorsements => :get, :order => :post}, :member => {
+  map.resources :users, :has_one => [:password, :profile], :collection => {:endorsements => :get, :order => :post, :import => [:get, :post]}, :member => {
     :suspend => :put,
     :unsuspend => :put,
     :activities => :get,
@@ -192,6 +192,9 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/issues/:slug.:format', :controller => "issues", :action => "show"  
   map.connect '/issues/:slug/:action', :controller => "issues"
   map.connect '/issues/:slug/:action.:format', :controller => "issues"  
+
+  map.connect '/import_users', :controller => 'users', :action => 'import'
+  map.connect '/import_users_done', :controller => 'users', :action => 'import_done'
 
   # See how all your routes lay out with "rake routes"
 

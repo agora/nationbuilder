@@ -943,11 +943,13 @@ is:
             submit: "Sækja um nýtt lykilorð"
             nevermind: "Allt í góðu, ég man það núna"
         change:
-            title: "Breyttu {{government_name}} lykilorðinu þínu"
+            title: "Breyttu lykilorðinu þínu"
+            title_first_time: "Velkomin(n) - vinsamlegast veldu þér lykilorð"
             facebook: "Lykilorðið þitt er sama og Facebook lykilorðið þannig að þú þarft að breyta því á Facebook."
             success: "Lykilorði breytt"
             nomatch: "Staðfestingarlykilorðin passa ekki saman"
-            submit: "Breyta lykilorðum"            
+            submit: "Breyta lykilorði"
+            submit_first_time: "Vista lykilorð"
     pictures:
         blank: "Smelltu á 'velja' til að velja myndaskrá til að upphlaða. Smelltu síðan á 'uppfæra og vista'"
         success: "Tókst að sækja mynd"
@@ -1520,6 +1522,10 @@ is:
         errors:
             need_zip: "Þú verður að gefa upp póstfang"
             need_email: "Þú verður að gefa upp heimilisfang"
+        import:
+            title: "Flytja notendur inn í kerfið úr CSV skrá"
+            submit: "Flytja í kerfið"
+            success: "Notendur hafa verið fluttir inn í kerfið"
     sessions:
         new:
             title: "Vinsamlegast skráðu þig inn"

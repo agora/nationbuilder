@@ -305,10 +305,19 @@ class UsersController < ApplicationController
       current_user.activate!
     end
     flash[:notice] = t('users.activate.success')
-    if logged_in? and current_government.is_legislators?
-      redirect_to legislators_settings_url
+
+    if current_user
+      if current_user.was_generated?
+        redirect_to(edit_password_path(current_user))
+      else
+        if logged_in? and current_government.is_legislators?
+          redirect_to legislators_settings_url
+        else
+          redirect_back_or_default('/')
+        end
+      end
     else
-      redirect_back_or_default('/')
+      redirect_to("/login")
     end
   end
   
@@ -505,7 +514,43 @@ class UsersController < ApplicationController
     flash[:notice] = t('users.make_admin', :user_name => @user.name)
     redirect_to @user
   end
-  
+
+  def import
+    if request.post?
+      userlist = params[:userlist]
+
+      if userlist
+        userlist.split(/\n/).each do |line|
+          elements = line.split(";")
+
+          first_name = elements[0].strip
+          last_name = elements[1].strip
+          email = elements[2].strip
+          email_name = email[0..email.index("@")-1].strip
+          password = Base64.encode64(Digest::SHA1.digest("#{rand(1<<64)}/#{Time.now.to_f}/#{Process.pid}/#{email_name}"))[0..7]
+
+          @user = User.new({
+            :login => first_name,
+            :email => email,
+            :first_name => first_name,
+            :last_name => last_name,
+            :password => password,
+            :password_confirmation => password,
+            :was_generated => true
+          })
+
+          @user.request = request
+          @user.referral = @referral
+          @user.partner_referral = current_partner
+          @user.save!
+        end
+      end
+
+      flash[:notice] = "Notendur hafa verið fluttir inn í kerfið"
+      redirect_to(settings_path) and return
+    end
+  end
+
   private
   
     def get_following

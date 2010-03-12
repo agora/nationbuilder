@@ -946,10 +946,12 @@ en:
             nevermind: "Never mind, I remember it now"
         change:
             title: "Change your password"
+            title_first_time: "Welcome - Please choose a password"
             facebook: "Your password is the same as your Facebook password, so you must change it on Facebook."
             success: "Password changed"
             nomatch: "Password confirmation did not match"
-            submit: "Change password"            
+            submit: "Change password"
+            submit_first_time: "Save password"
     pictures:
         blank: "Click on 'browse' to choose a graphic file to upload.  Then click 'update and save'"
         success: "Picture uploaded successfully"
@@ -1521,6 +1523,10 @@ en:
         errors:
             need_zip: "You must supply your zip code"
             need_email: "You must supply your email address"
+        import:
+            title: "Import users from CSV"
+            submit: "Import users"
+            success: "Users were successfully imported"
     sessions:
         new:
             title: "Please sign in"

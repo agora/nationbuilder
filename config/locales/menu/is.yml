@@ -22,6 +22,7 @@ is:
             branches: "Greinar"
             emails: "Netföng"
             apis: "API lyklar"
+            import: "Flytja úr CSV"
         branches:
             new: "Bæta við grein"
             current: "Tilbúnar greinar"

@@ -57,6 +57,11 @@ class PasswordsController < ApplicationController
       flash[:error] = t('passwords.change.facebook',:government_name => current_government.name)
       return
     end
+
+    if current_user.was_generated?
+      @page_title = t('passwords.change.title_first_time',:government_name => current_government.name)
+      render(:action => 'edit_first_time')
+    end
   end
 
   # PUT /users/1/password
@@ -67,7 +72,8 @@ class PasswordsController < ApplicationController
     @user.attributes = params[:user]
 
     respond_to do |format|
-      if @user.authenticated?(old_password) && @user.save
+      if (@user.authenticated?(old_password) || @user.was_generated?) && @user.save
+        @user.update_attribute(:was_generated, false)
         flash[:notice] = t('passwords.change.success')
         format.html { redirect_to(settings_path) }
       else

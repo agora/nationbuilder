@@ -8,7 +8,7 @@
 	<% end %>
 <% elsif ['issues'].include?(params[:controller]) %>
 	<% nav = 1 %>
-<% elsif ['network','users','user_contacts','import','messages','facebook','branch_users'].include?(params[:controller]) or (params[:controller] == 'partners' and not logged_in?) %>
+<% elsif (['network','users','user_contacts','import','messages','facebook','branch_users'].include?(params[:controller]) or (params[:controller] == 'partners' and not logged_in?)) and !params[:action] == 'import' %>
 	<% nav = 5 %>
 <% elsif ['points','revisions','documents','document_revisions','briefing'].include?(params[:controller]) %>	
 	<% nav = 3 %>
@@ -16,7 +16,7 @@
 	<% nav = 6 %>
 <% elsif ['about','charts','widgets'].include?(params[:controller]) %>
 	<% nav = 7 %>
-<% elsif ['governments','email_templates','admin','blurbs','color_schemes','pages','branches','tags'].include?(params[:controller]) %>
+<% elsif ['governments','email_templates','admin','blurbs','color_schemes','pages','branches','tags'].include?(params[:controller]) or params[:action] == "import" %>
 	<% nav = 8 %>
 <% elsif ['inbox'].include?(params[:controller]) %>
   <% nav = 9 %>
@@ -479,7 +479,7 @@
 		<%= render :partial => "network/nav", :locals => { :show_third => show_third } %>
 	<% end %>
 <% elsif nav == 6 or nav == 8 %>
-	<% if ['governments','blurbs','color_schemes','admin','email_templates','pages','tags','branches'].include?(params[:controller]) %>
+	<% if ['governments','blurbs','color_schemes','admin','email_templates','pages','tags','branches'].include?(params[:controller]) or params[:action] == 'import' %>
 		<%= render :partial => "admin/nav", :locals => { :show_third => show_third } %>
 	<% elsif ['partners'].include?(params[:controller]) and logged_in? %>
 		<%= render :partial => "partners/nav", :locals => { :show_third => show_third } %>	

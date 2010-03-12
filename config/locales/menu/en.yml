@@ -22,6 +22,7 @@ en:
             branches: "Branches"
             emails: "Emails"
             apis: "API keys"
+            import: "Import from CSV"
         branches:
             new: "Add a branch"
             current: "Existing branches"
