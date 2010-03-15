@@ -234,6 +234,10 @@ class ApplicationController < ActionController::Base
     end    
   end
   
+  def do_not_show_if_site_is_locked
+    redirect_to("/") and return if DB_CONFIG[RAILS_ENV]['signup_locked']
+  end
+  
   def js_help
     JavaScriptHelper.instance
   end

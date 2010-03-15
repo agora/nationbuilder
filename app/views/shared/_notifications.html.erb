@@ -24,10 +24,10 @@
 					<% if current_user.constituents_count < 3 and current_user.state != 'Minnesota' and current_government.is_legislators? %>
 						<li><%= link_to t('menu.next_steps.legislators'), legislators_settings_url %></li>
 					<% end %>
-					<% if current_user.followings_count < 2 %>
+					<% if current_user.followings_count < 2 and not DB_CONFIG[RAILS_ENV]['signup_locked'] %>
 						<li><%= link_to t('menu.next_steps.people_you_know'), user_contacts_path(current_user) %></li>
 					<% end %>
-					<% if current_user.referrals_count == 0 %>
+					<% if current_user.referrals_count == 0 and not DB_CONFIG[RAILS_ENV]['signup_locked'] %>
 						<% if facebook_session %>
 							<li><%= link_to t('menu.next_steps.facebook_friends'), :controller => "facebook", :action => "invite" %></li>
 						<% else %>

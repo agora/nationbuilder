@@ -585,4 +585,5 @@ class UsersController < ApplicationController
       params[:action] == 'new' ? 'simple' : "basic"
     end
   
+
 end

@@ -2,6 +2,7 @@ class UserContactsController < ApplicationController
   
   before_filter :login_required
   before_filter :get_user
+  before_filter :do_not_show_if_site_is_locked
   
   # GET /users/1/contacts
   def index
