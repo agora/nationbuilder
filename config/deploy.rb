@@ -2,7 +2,7 @@
 default_run_options[:pty] = true
 set :use_sudo, false
 # set :sudo, 'sudo -p Password:'
-set :stages, %w(none ccp tal)
+set :stages, %w(none ccp tal medizza)
 set :default_stage, "none"
 require 'capistrano/ext/multistage'
 
@@ -119,3 +119,12 @@ end
 after "deploy:start", "delayed_job:start" 
 after "deploy:stop", "delayed_job:stop" 
 after "deploy:restart", "delayed_job:restart"
+
+namespace :db do
+  desc "Load schema into db"
+  task :load_schema, :roles => :app do
+    run "#{try_sudo} cd #{current_path} && rake db:schema:load #{rails_env}"
+  end
+end
+
+after "deploy:start", "db:load_schema"

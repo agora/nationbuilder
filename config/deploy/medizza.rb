@@ -2,7 +2,7 @@
 set(:rails_env) { stage }
 set :customer, "medizza"
 set(:deploy_to) { "/u/apps/#{customer}_#{application}" } # Default: /u/apps/
-set :default_lang, "is"
+set :default_lang, "en"
 
 set :domain, "a4.agora.is"
 role :web, domain # Web server
@@ -45,21 +45,21 @@ namespace :db do
       default_lang: #{default_lang}
 
     development:
-      database: #{application}_agora_dev
-      memcached_namespace: #{application}_agora_dev
+      database: #{customer}_#{application}_dev
+      memcached_namespace: #{customer}_#{application}_dev
       domain:
       <<: *base
 
     test:
-      database: #{application}_agora_test
-      memcached_namespace: #{application}_agora_test
+      database: #{customer}_#{application}_test
+      memcached_namespace: #{customer}_#{application}_test
       domain:
       <<: *base
 
     production:
-      database: #{application}_agora_prod
-      memcached_namespace: #{application}_agora_prod      
-      domain: tal.agora.is
+      database: #{customer}_#{application}_prod
+      memcached_namespace: #{customer}_#{application}_prod      
+      domain: #{customer}.agora.is
       <<: *base
     EOF
 

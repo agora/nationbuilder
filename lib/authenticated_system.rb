@@ -79,7 +79,8 @@ module AuthenticatedSystem
           store_previous_location
           render_to_facebox(:template => "sessions/new")
         end        
-        format.any do
+        # format.any do
+        format.any(:xml, :js) do # FIXME: Stupid hack so IE8 doesn't use format.any, should instead use format.html
           request_http_basic_authentication 'Web Password'
         end
       end
