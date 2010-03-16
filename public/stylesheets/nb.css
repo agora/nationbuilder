@@ -1688,13 +1688,11 @@ ul.nicetabs li a {
   padding: 3px 10px !important;
   color: #333333;
   background: #eaeaea;
-/*  border: 0px;*/
 }
 
 ul.nicetabs li.open a {
   font-weight: bold;
   background: #bbbbbb;
-/*  border-bottom: 1px solid #ffffff;*/
 }
 
 /* END AGORA updates  */
