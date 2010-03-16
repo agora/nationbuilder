@@ -1686,7 +1686,9 @@ ul.nicetabs li {
 ul.nicetabs li a {
   display: block;
   padding: 3px 10px !important;
-  border: 1px solid #bbbbbb;
+  color: #333333;
+  background: #eaeaea;
+/*  border: 0px;*/
 }
 
 ul.nicetabs li.open a {
