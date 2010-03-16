@@ -59,7 +59,7 @@ namespace :db do
     production:
       database: #{application}_prod
       memcached_namespace: #{application}_prod      
-      domain: tal.agora.is
+      domain: talsyn.tal.is
       <<: *base
     EOF
 
