@@ -1,24 +1,23 @@
 <div id="priority_nav">
-<div id="priority_nav<% if ['index'].include?(params[:action]) %>1<% elsif ['points'].include?(params[:action]) %>2<% elsif ['documents'].include?(params[:action]) %>3<% end %>">	
-
-	<ul id="priority_menu">
-
-		<li class="tab1">
+<!-- <div id="priority_nav<% if ['index'].include?(params[:action]) %>1<% elsif ['points'].include?(params[:action]) %>2<% elsif ['documents'].include?(params[:action]) %>3<% end %>"> -->
+	<ul id="priority_menu" class="nicetabs">
+		<li class="tab1 <% if ['index'].include?(params[:action]) %>open<% end %>">
 			<span class="tab_header">
 				<%= link_to t('menu.briefing.priorities', :count => @priority_results.total_hits), searches_path(:q => params[:q]) %>
 			</span>
 		</li>
-		<li class="tab2">
+		<li class="tab2 <% if ['points'].include?(params[:action]) %>open <% end %>">
 			<span class="tab_header">
 				<%= link_to t('menu.briefing.points', :count => @point_results.total_hits), points_searches_path(:q => params[:q]) %>	
 			</span>
 		</li>
-		<li class="tab3">
+		<li class="tab3 <% if ['documents'].include?(params[:action]) %>open <% end %>">
 			<span class="tab_header">
 				<%= link_to t('menu.briefing.documents', :count => @document_results.total_hits), documents_searches_path(:q => params[:q]) %>
 			</span>
 		</li>
 	</ul>
-</div>
+	<div class="clear"></div>
+<!-- </div> -->
 </div>
 <p>

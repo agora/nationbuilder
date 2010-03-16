@@ -546,7 +546,7 @@ class UsersController < ApplicationController
         end
       end
 
-      flash[:notice] = "Notendur hafa verið fluttir inn í kerfið"
+      flash[:notice] = t("users.import.success")
       redirect_to(settings_path) and return
     end
   end

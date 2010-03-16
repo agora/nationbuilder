@@ -1666,4 +1666,33 @@ border:0;
     cursor:pointer;
 }
 
+.clear {
+  clear: both;
+}
+
+ul.nicetabs {
+  margin: 0;
+  padding: 0;
+  height: 26px;
+  list-style-type :none;
+  border-bottom: 1px solid #bbbbbb;
+}
+
+ul.nicetabs li {
+  float: left;
+  margin-right: 5px;
+}
+
+ul.nicetabs li a {
+  display: block;
+  padding: 3px 10px !important;
+  border: 1px solid #bbbbbb;
+}
+
+ul.nicetabs li.open a {
+  font-weight: bold;
+  background: #bbbbbb;
+/*  border-bottom: 1px solid #ffffff;*/
+}
+
 /* END AGORA updates  */

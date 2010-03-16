@@ -15,6 +15,9 @@ jQuery(document).ready(function() {
 	jQuery("input#priority_name, input#change_new_priority_name, input#point_other_priority_name, input#revision_other_priority_name, input#right_priority_box").autocomplete("/priorities.js");
 	jQuery("input#user_login_search, input#government_official_user_name").autocomplete("/users.js");
 	jQuery('#bulletin_content, #blurb_content, #message_content, #document_content, #email_template_content, #page_content').autoResize({extraSpace : 20})
+
+  jQuery(".nicetabs .tab_header a").uncorner();
+  jQuery(".nicetabs .tab_header a").corner("tl tr 5px");
 	
 	function addMega(){ 
 	  jQuery(this).addClass("hovering"); 
