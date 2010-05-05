@@ -4,7 +4,7 @@
   		<% if @priority %>
   		<div id="nav_sub_<% if @priority.new_record? %>1<% elsif @priority.is_finished? %>10<% elsif params[:controller] == 'ads' %>5<% elsif @endorsement %>1<% elsif @priority.is_top? %>4<% elsif @priority.is_obama_endorsed? %>3<% elsif @priority.is_rising? %>7<% elsif @priority.is_new? %>9<% elsif @priority.is_controversial? %>6<% else %>8<% end %>">
   		<% else %>
-  		<div id="nav_sub_<% if ['yours','yours_finished','yours_created','yours_top','yours_lowest','yours_ads'].include?(params[:action]) %>1<% elsif logged_in? and ['network'].include?(params[:action]) %>2<% elsif not logged_in? and ['index'].include?(params[:action]) %>2<% elsif ['obama','not_obama','obama_opposed'].include?(params[:action]) %>3<% elsif ['top'].include?(params[:action]) %>4<% elsif ['ads'].include?(params[:action]) %>5<% elsif ['controversial'].include?(params[:action]) %>6<% elsif ['rising'].include?(params[:action]) %>7<% elsif ['random'].include?(params[:action]) %>8<% elsif ['newest'].include?(params[:action]) %>9<% elsif ['finished'].include?(params[:action]) %>10<% end %>">
+  		<div id="nav_sub_<% if ['yours','yours_finished','yours_created','yours_top','yours_lowest','yours_ads'].include?(params[:action]) %>1<% elsif logged_in? and ['network'].include?(params[:action]) %>2<% elsif not logged_in? and ['index'].include?(params[:action]) %>2<% elsif ['obama','not_obama','obama_opposed'].include?(params[:action]) %>3<% elsif ['top'].include?(params[:action]) %>4<% elsif ['ads'].include?(params[:action]) %>5<% elsif ['controversial'].include?(params[:action]) %>6<% elsif ['rising'].include?(params[:action]) %>7<% elsif ['random'].include?(params[:action]) %>8<% elsif ['newest'].include?(params[:action]) %>9<% elsif ['finished'].include?(params[:action]) %>10<% elsif ['showintheworks'].include?(params[:action]) %>11<% end %>">
   		<% end %>
   			<ul id="menu_sub">
   				<% if not logged_in? and current_government.homepage == 'index' %>
@@ -67,7 +67,12 @@
   					<span class="tab_header">
   						<%= link_to t('menu.priorities.everyone.finished'), finished_priorities_url %>
   					</span>
-  				</li>														
+  				</li>
+  				<li class="tab11">
+    				<span class="tab_header">
+    					<%= link_to t('menu.priorities.showintheworks.short'), showintheworks_priorities_url %>
+    				</span>
+    			</li>
   			</ul>
   		</div>
   	</div>
@@ -136,7 +141,13 @@
   						<%= link_to t('menu.priorities.everyone.finished'), finished_priorities_url %>
   					</span>
   				</li>
-			
+
+    			<li class="tab11">
+    				<span class="tab_header">
+    					<%= link_to t('menu.priorities.showintheworks.short'), :action => "showintheworks" %>
+    				</span>
+    			</li>
+
   			</ul>
   		</div>
   	</div>

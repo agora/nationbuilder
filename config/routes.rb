@@ -85,6 +85,7 @@ ActionController::Routing::Routes.draw do |map|
       :consider => :get, 
       :obama => :get, :not_obama => :get, :obama_opposed => :get,      
       :finished => :get, 
+      :showintheworks => :get,
       :ads => :get,
       :top => :get, 
       :rising => :get, 

@@ -191,6 +191,8 @@ en:
                 name: "Mark this as in the works"
                 title: "Mark this priority as in the works"
                 confirm: "You are about to mark this priority as in the works: {{priority_name}}."
+            showintheworks:
+                short: "In the works"
             failed:
                 name: "Mark this failed"
                 title: "Mark this priority as finished and failed"

@@ -191,6 +191,8 @@ is:
                 name: "Merkja í vinnslu"
                 title: "Merkja að þetta forgangsatriði sé í vinnslu"
                 confirm: "Þú ert að merkja við þetta forgangsatriði að það sé í vinnslu: {{priority_name}}."
+            showintheworks:
+                short: "Í vinnslu"
             failed:
                 name: "Merkja sem mistök"
                 title: "Merkja þetta forgangatriði sem lokið og misheppnað"
