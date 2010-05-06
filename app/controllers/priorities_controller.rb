@@ -639,14 +639,18 @@ class PrioritiesController < ApplicationController
         @saved = true
       elsif current_government.is_searchable? # doesn't exist, let's do a search assuming solr is installed
         @priority_results = Priority.find_by_solr "(" + query + ") AND is_published:true", :limit => 25
-        @priorities = @priority_results.docs
-        if @priorities.any? # found some matches in search, let's show them and bale out of the rest of this
-          @priority = Priority.new(params[:priority])
-          get_endorsements
-          respond_to do |format|
-            format.html { render :action => "new"}
+        if @priority_results
+          @priorities = @priority_results.docs
+          if @priorities.any? # found some matches in search, let's show them and bale out of the rest of this
+            @priority = Priority.new(params[:priority])
+            get_endorsements
+            respond_to do |format|
+              format.html { render :action => "new"}
+            end
+            return
+          else
+            @saved = false
           end
-          return
         else
           @saved = false
         end
